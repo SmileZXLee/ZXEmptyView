@@ -2,8 +2,8 @@
 //  ZXFullEmptyView.m
 //  ZXEmptyView
 //
-//  Created by 李兆祥 on 2019/10/5.
-//  Copyright © 2019 李兆祥. All rights reserved.
+//  Created by ZXLee on 2019/10/5.
+//  Copyright © 2019 ZXLee. All rights reserved.
 //  https://github.com/SmileZXLee/ZXEmptyView
 
 #import "ZXFullEmptyView.h"
