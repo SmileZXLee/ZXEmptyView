@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DemoCustomEmptyView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自定义的EmptyView" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1n-XR-An6">
+                    <rect key="frame" x="10" y="20" width="394" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="IJx-M5-Btj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="l65-pT-OOc">
+                    <rect key="frame" x="10" y="45" width="394" height="120"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <string key="text">自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view自定义view</string>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sz-jN-1Ef">
+                    <rect key="frame" x="0.0" y="170" width="414" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fev-lJ-lpt">
+                            <rect key="frame" x="0.0" y="0.0" width="207" height="50"/>
+                            <color key="backgroundColor" red="0.28235294119999998" green="0.72549019609999998" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="重新加载">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icP-o6-eef">
+                            <rect key="frame" x="207" y="0.0" width="207" height="50"/>
+                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="退出程序">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="fev-lJ-lpt" firstAttribute="width" secondItem="5sz-jN-1Ef" secondAttribute="width" multiplier="1/2" id="571-HA-nDD"/>
+                        <constraint firstAttribute="height" constant="50" id="B6J-zg-W4b"/>
+                        <constraint firstItem="icP-o6-eef" firstAttribute="width" secondItem="fev-lJ-lpt" secondAttribute="width" id="MBO-HQ-01b"/>
+                        <constraint firstItem="icP-o6-eef" firstAttribute="leading" secondItem="fev-lJ-lpt" secondAttribute="trailing" id="Z29-fn-7z9"/>
+                        <constraint firstAttribute="bottom" secondItem="fev-lJ-lpt" secondAttribute="bottom" id="aNP-O3-L59"/>
+                        <constraint firstItem="fev-lJ-lpt" firstAttribute="leading" secondItem="5sz-jN-1Ef" secondAttribute="leading" id="eri-V7-vPV"/>
+                        <constraint firstAttribute="bottom" secondItem="icP-o6-eef" secondAttribute="bottom" id="hxr-5i-wwZ"/>
+                        <constraint firstItem="fev-lJ-lpt" firstAttribute="top" secondItem="5sz-jN-1Ef" secondAttribute="top" id="koO-hQ-7XM"/>
+                        <constraint firstItem="icP-o6-eef" firstAttribute="top" secondItem="5sz-jN-1Ef" secondAttribute="top" id="zXm-fT-kP8"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="M1n-XR-An6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="5UX-ME-QWJ"/>
+                <constraint firstItem="l65-pT-OOc" firstAttribute="top" secondItem="M1n-XR-An6" secondAttribute="bottom" constant="5" id="7rv-28-CwK"/>
+                <constraint firstAttribute="trailing" secondItem="5sz-jN-1Ef" secondAttribute="trailing" id="8Oj-1F-Bq0"/>
+                <constraint firstAttribute="bottom" secondItem="5sz-jN-1Ef" secondAttribute="bottom" id="Iy0-kK-9aF"/>
+                <constraint firstItem="M1n-XR-An6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Tci-uV-yox"/>
+                <constraint firstItem="5sz-jN-1Ef" firstAttribute="top" secondItem="l65-pT-OOc" secondAttribute="bottom" constant="5" id="VBG-M4-UKw"/>
+                <constraint firstItem="5sz-jN-1Ef" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hQR-E5-T66"/>
+                <constraint firstAttribute="trailing" secondItem="M1n-XR-An6" secondAttribute="trailing" constant="10" id="oQ1-NY-Nav"/>
+                <constraint firstAttribute="trailing" secondItem="l65-pT-OOc" secondAttribute="trailing" constant="10" id="q33-WN-rGQ"/>
+                <constraint firstItem="l65-pT-OOc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="vaG-oJ-Ybh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="146.37681159420291" y="189.50892857142856"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,65 @@
+//
+//  DemoSelectionVC.m
+//  ZXEmptyViewDemo
+//
+//  Created by 李兆祥 on 2019/10/7.
+//  Copyright © 2019 李兆祥. All rights reserved.
+//
+
+#import "DemoSelectionVC.h"
+#import "DemoUIViewVC.h"
+#import "DemoTableViewVC.h"
+#import "DemoCollectionViewVC.h"
+#import "DemoCustomViewVC.h"
+
+@interface DemoSelectionVC ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *datas;
+@end
+
+@implementation DemoSelectionVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"ZXEmptyViewDemo";
+    self.datas = @[@"显示在控制器View上的ZXEmptyView",@"显示在tableView上的ZXEmptyView",@"显示在collectionView上的ZXEmptyView",@"完全自定义的EmptyView"];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
+
+#pragma mark - UITableViewDataSource & UITableViewDelegate
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.datas.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    cell.textLabel.text = self.datas[indexPath.row];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    UIViewController *vc;
+    if(indexPath.row == 0){
+        vc = [[DemoUIViewVC alloc]init];
+    }else if(indexPath.row == 1){
+        vc = [[DemoTableViewVC alloc]init];
+    }else if(indexPath.row == 2){
+        vc = [[DemoCollectionViewVC alloc]init];
+    }else if(indexPath.row == 3){
+        vc = [[DemoCustomViewVC alloc]init];
+    }
+    if(vc){
+        vc.title = self.datas[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+
+@end
