@@ -186,8 +186,126 @@ pod 'ZXEmptyView'
 }
 @end
 ```
+#### 7.其他情况可自行尝试，您只需要进行基本的数据和样式设置而无需设置frame，ZXEmptyContentView会帮助您自动布局
 #### 在控制器中初始化之后，查看效果:
 <img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo1.jpg"/>
 
-### ZXEmptyContentView布局
-#### TODO
+## 使用进阶
+### ZXEmptyContentView布局修改
+#### 获取ZXEmptyContentView对象
+```objective-c
+//若已经调用了初始化方法，如self.view zx_setEmptyView...，则ZXEmptyContentView将会添加在self.view上，使用下面的方式可以获取ZXEmptyContentView对象
+ZXEmptyContentView *emptyContentView = self.view.zx_emptyContentView;
+```
+
+#### 修改ZXEmptyContentView自身布局
+* ZXEmptyContentView大小会根据子控件的frame变化自动变化，且自动居中，您可以在此基础上进行自定义更改
+* 设置ZXEmptyContentView距离顶部的固定高度（默认水平居中）
+```objective-c
+emptyContentView.zx_fixTop = 30;
+```
+* 设置ZXEmptyContentView距离左侧的固定距离（默认垂直居中）
+```objective-c
+emptyContentView.zx_fixLeft = 30;
+```
+* 设置ZXEmptyContentView的固定宽度（默认等于子控件中最宽的宽度，若超过EmptyContentView所属view的宽度-2*10，则为所属view的宽度-2*10）
+```objective-c
+//其子控件的宽度将被自动压缩，如内部label文字不够显示，则高度自动变高
+emptyContentView.zx_fixWidth = 300;
+```
+* 修改ZXEmptyContentView的frame(当ZXEmptyContentView frame改变时会自动调用此block)
+```objective-c
+self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
+    //将orgFrame修改后返回，orgFrame为自动布局之后ZXEmptyContentView的frame
+    return orgFrame;
+};
+```
+#### 修改ZXEmptyContentView 子控件布局
+#### 修改zx_topImageView布局
+* 修改zx_topImageView距离顶部高度(默认为10)
+```objective-c
+emptyContentView.zx_topImageView.zx_fixTop = 20;
+```
+* 固定zx_topImageView的宽度，高度根据图片比例自适应(默认为image的宽度)
+```objective-c
+emptyContentView.zx_topImageView.zx_fixWidth = 100;
+```
+* 固定zx_topImageView的高度，宽度根据图片比例自适应(默认为image的高度)
+```objective-c
+emptyContentView.zx_topImageView.zx_fixHeight = 100;
+```
+* 固定zx_topImageView的size(默认为image的size)
+```objective-c
+emptyContentView.zx_topImageView.zx_fixSize = CGSizeMake(100,100);
+```
+* 修改zx_topImageView的frame(当zx_topImageView frame改变时会自动调用此block)
+```objective-c
+self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
+    //将orgFrame修改后返回，orgFrame为自动布局之后zx_topImageView的frame
+    return orgFrame;
+};
+```
+*** 
+#### 修改zx_titleLabel布局
+* 修改zx_titleLabel距离顶部高度(默认为10)
+```objective-c
+emptyContentView.zx_titleLabel.zx_fixTop = 20;
+```
+* 固定zx_titleLabel的宽度，高度根据文字内容自适应(默认跟从ZXEmptyContentView自动调整)
+```objective-c
+emptyContentView.zx_titleLabel.zx_fixWidth = 100;
+```
+* 修改zx_titleLabel的frame(当zx_titleLabel frame改变时会自动调用此block)
+```objective-c
+self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
+    //将orgFrame修改后返回，orgFrame为自动布局之后zx_titleLabel的frame
+    return orgFrame;
+};
+```
+#### 修改zx_detailLabel布局
+* 同zx_titleLabel
+
+#### 修改zx_actionBtn布局
+* 修改zx_actionBtn距离顶部高度(默认为10)
+```objective-c
+emptyContentView.zx_actionBtn.zx_fixTop = 20;
+```
+* 固定zx_actionBtn的宽度，高度根据文字内容自适应(默认跟从ZXEmptyContentView自动调整)
+```objective-c
+emptyContentView.zx_actionBtn.zx_fixWidth = 100;
+```
+* 固定zx_actionBtn的高度，宽度根据文字内容自适应
+```objective-c
+emptyContentView.zx_actionBtn.zx_fixHeight = 30;
+```
+* 固定zx_actionBtn的附加宽度（在原始宽度[按钮文字宽度]上增加）
+```objective-c
+emptyContentView.zx_actionBtn.zx_additionWidth = 15;
+```
+* 固定zx_actionBtn的附加高度（在原始高度[按钮文字高度]上增加）
+```objective-c
+emptyContentView.zx_actionBtn.zx_additionHeight = 15;
+```
+* 修改zx_actionBtn的frame(当zx_actionBtn frame改变时会自动调用此block)
+```objective-c
+self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
+    //将orgFrame修改后返回，orgFrame为自动布局之后zx_actionBtn的frame
+    return orgFrame;
+};
+```
+#### ZXEmptyContentView 子控件统一布局
+* 设置ZXEmptyContentView的subviews距离底部的高度（默认为10）
+```objective-c
+emptyContentView.zx_subviewsMarginBottom = 20;
+```
+* 设置ZXEmptyContentView的subviews之间的间隙（默认为10）
+```objective-c
+emptyContentView.zx_defaultSubviewsSpace = 20;
+```
+# TODO
+
+
+
+
+
+
