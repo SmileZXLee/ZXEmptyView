@@ -54,7 +54,7 @@ pod 'ZXEmptyView'
 ```
 * 至此，一个EmptyView就已创建完毕，进入目标控制器即可发现EmptyView
 
-## 基础样式示例
+### 基础样式示例
 ### ZXEmptyContentView提供了丰富的样式自定义接口，您可以轻松快速地设置需要的EmptyView
 #### 1.仅显示titleLabel
 * 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
@@ -220,6 +220,7 @@ self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
     return orgFrame;
 };
 ```
+*** 
 #### 修改ZXEmptyContentView 子控件布局
 #### 修改zx_topImageView布局
 * 修改zx_topImageView距离顶部高度(默认为10)
@@ -262,9 +263,11 @@ self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
     return orgFrame;
 };
 ```
+*** 
 #### 修改zx_detailLabel布局
 * 同zx_titleLabel
 
+*** 
 #### 修改zx_actionBtn布局
 * 修改zx_actionBtn距离顶部高度(默认为10)
 ```objective-c
@@ -293,6 +296,7 @@ self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
     return orgFrame;
 };
 ```
+*** 
 #### ZXEmptyContentView 子控件统一布局
 * 设置ZXEmptyContentView的subviews距离底部的高度（默认为10）
 ```objective-c
@@ -302,6 +306,7 @@ emptyContentView.zx_subviewsMarginBottom = 20;
 ```objective-c
 emptyContentView.zx_defaultSubviewsSpace = 20;
 ```
+*** 
 # TODO
 
 
