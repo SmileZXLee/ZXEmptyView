@@ -14,7 +14,7 @@ static NSString *emptyContentViewKey = @"zx_emptyContentViewKey";
 static NSString *fullEmptyViewKey = @"zx_fullEmptyViewKey";
 @implementation UIView (ZXEmpty)
 
-#pragma mark - public
+#pragma mark - 初始化方法
 - (void)zx_setCustomEmptyView:(id)customView{
     [self zx_setEmptyView:[ZXEmptyContentView class]];
     self.zx_emptyContentView.zx_customView = customView;
@@ -51,7 +51,20 @@ static NSString *fullEmptyViewKey = @"zx_fullEmptyViewKey";
     }
 }
 
-- (void)zx_updateFrame:(updateFrameBlock)block{
+- (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull clickedBlock:(zx_clickedBlock)clickedBlock{
+    [self zx_setEmptyView:emptyViewObj isFull:isFull];
+    self.zx_emptyContentView.zx_btnClickedBlock = clickedBlock;
+}
+
+- (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull clickedBlock:(zx_clickedBlock)clickedBlock emptyViewClickedBlock:(zx_emptyViewClickedBlock)emptyViewClickedBlock{
+    [self zx_setEmptyView:emptyViewObj isFull:isFull];
+    self.zx_emptyContentView.zx_btnClickedBlock = clickedBlock;
+    self.zx_emptyContentView.zx_emptyViewClickedBlock = emptyViewClickedBlock;
+}
+
+#pragma mark - public
+
+- (void)zx_updateFrame:(zx_updateFrameBlock)block{
     if([self isKindOfClass:[ZXEmptyContentView class]]){
         [((ZXEmptyContentView *)self) setNeedsLayout];
         ((ZXEmptyContentView *)self).zx_handleFrame = block;

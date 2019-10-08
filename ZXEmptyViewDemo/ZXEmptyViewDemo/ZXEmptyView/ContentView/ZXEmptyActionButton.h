@@ -7,7 +7,7 @@
 //  https://github.com/SmileZXLee/ZXEmptyView
 
 #import <UIKit/UIKit.h>
-typedef void (^clickedBlock)(UIButton *_Nullable btn);
+typedef void (^ __nullable zx_clickedBlock)(UIButton *_Nullable btn);
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZXEmptyActionButton : UIButton
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param block 点击后的回调
  */
-- (void)zx_clickedBlock:(clickedBlock)block;
+- (void)zx_clickedBlock:(zx_clickedBlock)block;
 
 
 /**

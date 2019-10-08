@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ZXEmptyContentView.h"
 #import "UIView+ZXEmptyLayout.h"
-typedef CGRect (^updateFrameBlock)(CGRect orgFrame);
+typedef CGRect (^zx_updateFrameBlock)(CGRect orgFrame);
+typedef void(^__nullable zx_emptyViewClickedBlock)(UIView * _Nullable btn);
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (ZXEmpty)
@@ -28,6 +29,25 @@ NS_ASSUME_NONNULL_BEGIN
  @param isFull emptyView是否填充满整个view，默认为否
  */
 - (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull;
+
+/**
+ 为当前view设置根据内容自适应大小的emptyView
+ 
+ @param emptyViewObj ZXEmptyContentView(或继承于它)对象(id)或ZXEmptyContentView(或继承于它)的class(Class)或ZXEmptyContentView(或继承于它)对象的class名(NSString)
+ @param isFull emptyView是否填充满整个view，默认为否
+ @param clickedBlock 点击了actionBtn回调
+ */
+- (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull clickedBlock:(zx_clickedBlock)clickedBlock;
+
+/**
+ 为当前view设置根据内容自适应大小的emptyView
+ 
+ @param emptyViewObj ZXEmptyContentView(或继承于它)对象(id)或ZXEmptyContentView(或继承于它)的class(Class)或ZXEmptyContentView(或继承于它)对象的class名(NSString)
+ @param isFull emptyView是否填充满整个view，默认为否
+ @param clickedBlock clickedBlock 点击了actionBtn回调
+ @param emptyViewClickedBlock 点击了emptyView回调
+ */
+- (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull clickedBlock:(zx_clickedBlock)clickedBlock emptyViewClickedBlock:(zx_emptyViewClickedBlock)emptyViewClickedBlock;
 
 /**
  为当前view设置完全自定义的emptyView
@@ -50,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param block 根据view原始frame(自动计算)，返回修改后的frame
  */
-- (void)zx_updateFrame:(updateFrameBlock)block;
+- (void)zx_updateFrame:(zx_updateFrameBlock)block;
 
 /**
  获取属于当前view的emptyView

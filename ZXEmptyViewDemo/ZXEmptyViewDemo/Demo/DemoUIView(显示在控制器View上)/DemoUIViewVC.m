@@ -17,11 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self.view zx_setEmptyView:@"DemoEmptyView"];
+  //ZXEmptyView内部设置了点击按钮或view自动隐藏，若您不要此功能，请将EmptyView的zx_autoHideWhenTapOrClick设置为NO
+    [self.view zx_setEmptyView:@"DemoEmptyView" isFull:NO clickedBlock:^(UIButton * _Nullable btn) {
+        NSLog(@"点击了按钮");
+    } emptyViewClickedBlock:nil];
     [self.view zx_showEmptyView];
     self.view.zx_emptyContentView.zx_type = 1;
-    self.view.zx_emptyContentView.zx_detailLabel.text = @"这是一个显示在控制器view上面的ZXEmptyView，3秒后这段文字以及标题将被改变";
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    self.view.zx_emptyContentView.zx_detailLabel.text = @"这是一个显示在控制器view上面的ZXEmptyView，2秒后这段文字以及标题将被改变，点击按钮将自动消失";
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.view.zx_emptyContentView.zx_detailLabel.text = @"文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变";
         self.view.zx_emptyContentView.zx_titleLabel.text = @"网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误";
     });

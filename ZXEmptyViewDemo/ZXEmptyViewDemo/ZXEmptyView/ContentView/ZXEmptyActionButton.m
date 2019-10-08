@@ -8,7 +8,7 @@
 
 #import "ZXEmptyActionButton.h"
 @interface ZXEmptyActionButton()
-@property(copy,nonatomic)clickedBlock block;
+@property(copy,nonatomic)zx_clickedBlock block;
 @end
 @implementation ZXEmptyActionButton
 
@@ -24,7 +24,7 @@
     [super sendAction:action to:target forEvent:event];
 }
 
-- (void)zx_clickedBlock:(clickedBlock)block{
+- (void)zx_clickedBlock:(zx_clickedBlock)block{
     _zx_addedClickCallBackOrAction = YES;
     _block = block;
     [self addTarget:self action:@selector(clickedAction:) forControlEvents:UIControlEventTouchUpInside];
