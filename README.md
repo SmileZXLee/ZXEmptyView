@@ -575,7 +575,7 @@ customEmptyView.zx_size = CGSizeMake(300, 200);
 ```
 #### 具体代码可查看Demo中的DemoCustomViewVC
 #### 效果预览
-<img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo2.png"/>
+<img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo2.jpg"/>
 
 
 
