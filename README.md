@@ -388,6 +388,16 @@ self.view.zx_emptyContentView.zx_emptyViewClickedBlock = ^(UIView * _Nonnull sen
     NSLog(@"点击了emptyView");
 }];
 ```
+* 通过ZXEmptyContentView对象设置actionBtn点击回调(Block)
+```objective-c
+self.view.zx_emptyContentView.zx_btnClickedBlock = ^(UIView * _Nonnull sender) {
+    NSLog(@"点击了按钮");
+};
+```
+* 通过ZXEmptyContentView对象设置actionBtn点击回调(addTarget)
+```objective-c
+[self.view.zx_emptyContentView zx_btnAddTarget:self action:@selector(emptyViewClickedAction)];
+```
 * 通过actionBtn对象设置自身点击回调(Block)
 ```objective-c
 [self.view.zx_emptyContentView.zx_actionBtn zx_clickedBlock:^(UIButton * _Nullable btn) {
@@ -502,6 +512,48 @@ self.tableView.zx_emptyContentView.zx_type = 0;
 
 ***
 
+### ZXEmptyContentView的其他设置
+#### 手动显示ZXEmptyContentView
+* 调用ZXEmptyContentView对象的zx_show方法
+```objective-c
+[emptyContentView zx_show];
+```
+* 调用ZXEmptyContentView所添加到的superView的zx_showEmptyView方法
+```objective-c
+[self.tableView zx_showEmptyView];
+```
+#### 手动隐藏ZXEmptyContentView
+* 调用ZXEmptyContentView对象的zx_hide方法
+```objective-c
+[emptyContentView zx_hide];
+```
+* 调用ZXEmptyContentView所添加到的superView的zx_showEmptyView方法
+```objective-c
+[self.tableView zx_hideEmptyView];
+```
+
+#### 设置ZXEmptyContentView覆盖满整个superView
+```objective-c
+//isFull为YES，则覆盖满整个superView
+[self.view zx_setEmptyView:@"DemoEmptyView" isFull:YES clickedBlock:^(UIButton * _Nullable btn) {
+    NSLog(@"点击了按钮");
+} emptyViewClickedBlock:^(UIView * _Nullable btn) {
+    NSLog(@"点击了emptyView");
+}];
+```
+#### 获取ZXEmptyContentView的zx_fullEmptyView(覆盖满整个superView的view)
+* 通过ZXEmptyContentView对象的获取
+```objective-c
+ZXFullEmptyView *fullEmptyViewem = emptyContentView.zx_fullEmptyView;
+```
+* 通过ZXEmptyContentView所添加到的主视图获取
+```objective-c
+ZXFullEmptyView *fullEmptyViewem = self.view.zx_fullEmptyView;
+```
+#### 事实上，当ZXEmptyContentView为覆盖满整个目标view的时候，ZXEmptyContentView的superView为目标view；
+#### 当ZXEmptyContentView需要覆盖满目标视图的时候，ZXEmptyContentView的superView是ZXFullEmptyView，ZXFullEmptyView的superView是目标view
+
+***
 ### 完全自定义ZXEmptyView
 #### 若ZXEmptyContentView中的子控件数量或种类无法满足需求，可以完全自定义，且仍然可以使用自动居中布局与自动显示
 * 在控制器中
