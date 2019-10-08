@@ -510,6 +510,15 @@ self.tableView.zx_emptyContentView.zx_type = 0;
 #### 效果预览
 <img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo2.gif"/>
 
+### ZXEmptyContentView UITableView & UICollectionView功能辅助
+#### UITableView or UICollectionView开始加载的时候手动调用，将会隐藏emptyView
+```objective-c
+[self.tableView zx_startLoading];
+```
+#### UITableView or UICollectionView结束加载的时候手动调用，将会根据tableView中cell的个数决定是否显示emptyView
+```objective-c
+[self.tableView zx_endLoading];
+```
 ***
 
 ### ZXEmptyContentView的其他设置
