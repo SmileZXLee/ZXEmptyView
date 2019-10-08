@@ -307,7 +307,215 @@ emptyContentView.zx_subviewsMarginBottom = 20;
 emptyContentView.zx_defaultSubviewsSpace = 20;
 ```
 *** 
-# TODO
+### ZXEmptyContentView数据设置
+#### 设置ZXEmptyContentView的子控件数据
+* ZXEmptyContentView的子控件包括zx_topImageView、zx_titleLabel、zx_detailLabel、zx_actionBtn
+* 您可以在自定义EmptyView继承于ZXEmptyContentView并重写zx_customSetting的时候进行初始化设置
+* 您也可以在控制器或其他地方通过view(ZXEmptyContentView添加到哪个view上，就用哪个view).zx_emptyContentView方式获取ZXEmptyContentView对象，从而获取内部控件，并随时修改
+#### 下方是一个小Demo，实现了刚开始显示默认数据，3秒后更换数据的效果
+* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+```objective-c
+@implementation DemoEmptyView
+//重写zx_customSetting方法
+- (void)zx_customSetting{
+    //设置titleLabel
+    self.zx_titleLabel.text = @"3秒后，emptyView数据将发生改变";
+    self.zx_titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    
+    //设置detailLabel
+    self.zx_detailLabel.text = @"我是detailLabel";
+    self.zx_detailLabel.textColor = [UIColor darkGrayColor];
+    self.zx_detailLabel.font = [UIFont systemFontOfSize:13];
+    
+    //设置actionBtn
+    //设置actionBtn宽度比按钮文字内容宽度多15
+    self.zx_actionBtn.zx_additionWidth = 15;
+    //设置actionBtn高度比按钮文字内容高度多10
+    self.zx_actionBtn.zx_additionHeight = 10;
+    self.zx_actionBtn.layer.cornerRadius = 2;
+    [self.zx_actionBtn setTitle:@"我是actionBtn" forState:UIControlStateNormal];
+    self.zx_actionBtn.backgroundColor = [UIColor orangeColor];
+    [self.zx_actionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+}
+@end
+```
+* 在控制器中设置当前控制器view的emptyView为DemoEmptyView，并在3秒后修改emptyView子控件
+```objective-c
+[self.view zx_setEmptyView:@"DemoEmptyView" isFull:NO clickedBlock:^(UIButton * _Nullable btn) {
+    NSLog(@"点击了按钮");
+} emptyViewClickedBlock:nil];
+[self.view zx_showEmptyView];
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    self.view.zx_emptyContentView.zx_titleLabel.text = @"3秒到了";
+    self.view.zx_emptyContentView.zx_titleLabel.layer.borderWidth = 1;
+    self.view.zx_emptyContentView.zx_titleLabel.layer.borderColor = [UIColor redColor].CGColor;
+
+    self.view.zx_emptyContentView.zx_detailLabel.text = @"数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变数据发生了改变";
+    self.view.zx_emptyContentView.zx_actionBtn.backgroundColor = [UIColor purpleColor];
+    [self.view.zx_emptyContentView.zx_actionBtn setTitle:@"我也发生了改变" forState:UIControlStateNormal];
+});
+```
+* 查看效果:
+<img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo1.gif"/>
+
+***
+### ZXEmptyContentView 点击回调
+#### ZXEmptyContentView自身点击回调
+* 在控制器中设置当前控制器view的emptyView为DemoEmptyView时，同时设置点击回调
+```objective-c
+[self.view zx_setEmptyView:@"DemoEmptyView" isFull:NO clickedBlock:^(UIButton * _Nullable btn) {
+    NSLog(@"点击了按钮");
+} emptyViewClickedBlock:^(UIView * _Nullable btn) {
+    NSLog(@"点击了emptyView");
+}];
+```
+* 通过ZXEmptyContentView对象设置自身点击回调(Block)
+```objective-c
+self.view.zx_emptyContentView.zx_emptyViewClickedBlock = ^(UIView * _Nonnull sender) {
+    NSLog(@"点击了emptyView");
+};
+```
+* 通过ZXEmptyContentView对象设置自身点击回调(addTarget)
+```objective-c
+[self.view.zx_emptyContentView zx_emptyViewAddTarget:self action:@selector(emptyViewClickedAction)];
+```
+#### ZXEmptyContentView中的actionBtn点击回调(Block)
+* 在控制器中设置当前控制器view的emptyView为DemoEmptyView时，同时设置点击回调
+```objective-c
+[self.view zx_setEmptyView:@"DemoEmptyView" isFull:NO clickedBlock:^(UIButton * _Nullable btn) {
+    NSLog(@"点击了按钮");
+} emptyViewClickedBlock:^(UIView * _Nullable btn) {
+    NSLog(@"点击了emptyView");
+}];
+```
+* 通过actionBtn对象设置自身点击回调(Block)
+```objective-c
+[self.view.zx_emptyContentView.zx_actionBtn zx_clickedBlock:^(UIButton * _Nullable btn) {
+    NSLog(@"点击了按钮");
+}];
+```
+* 通过actionBtn对象设置自身点击回调(addTarget)
+```objective-c
+[self.view.zx_emptyContentView.zx_actionBtn zx_addTarget:self action:@selector(btnClickedAction)];
+```
+#### 点击自动隐藏ZXEmptyContentView
+* 当点击了ZXEmptyContentView中的actionBtn时ZXEmptyContentView会自动隐藏，若实现了点击ZXEmptyContentView方法的监听，则点击ZXEmptyContentView时，ZXEmptyContentView也会自动隐藏
+* 可以通过以下设置关闭此功能
+```objective-c
+self.tableView.zx_emptyContentView.zx_autoHideWhenTapOrClick = NO;
+```
+***
+
+### ZXEmptyContentView UITableView&UICollectionView相关
+#### ZXEmptyContentView 自动显示与隐藏
+* 若将ZXEmptyContentView添加至tableView或collectionView中(如：[self.tableView zx_setEmptyView...])，则ZXEmptyContentView会自动显示与隐藏
+* 当tableView或collectionView有数据的时候，ZXEmptyContentView会自动隐藏，无数据时自动显示
+* 可以通过以下设置关闭此功能
+```objective-c
+self.tableView.zx_emptyContentView.zx_autoShowEmptyView = NO;
+```
+#### ZXEmptyContentView 根据headerView和footerView的高度自动调整布局
+* 当tableView或collectionView无数据并且有headerView或footerView时，ZXEmptyContentView会自动计算并调整y轴的偏移量，使得ZXEmptyContentView始终在二者之间
+* 可以通过以下设置关闭此功能
+```objective-c
+self.tableView.zx_emptyContentView.zx_autoAdjustWhenHeaderView = NO;
+self.tableView.zx_emptyContentView.zx_autoAdjustWhenFooterView = NO;
+```
+### ZXEmptyContentView 切换样式
+#### 在实际开发中经常需要使用到样式切换，例如若tableView无数据，则显示无数据的emptyView，若网络请求失败，则显示网络错误的emptyView
+#### 以下是一个样式切换的demo
+* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+```objective-c
+@implementation DemoEmptyView
+//重写父类zx_customSetting方法
+- (void)zx_customSetting{
+    self.zx_type = 0;
+}
+
+//重写父类属性zx_type的set方法，若zx_type=0，则为暂无数据，若zx_type=1，则为网络错误，通过控制zx_type来切换显示的样式
+- (void)setZx_type:(int)zx_type{
+    if(zx_type == 0){
+        //暂无数据的样式
+        self.zx_topImageView.image = [UIImage imageNamed:@"nodata_icon"];
+        self.zx_topImageView.zx_fixWidth = 100;
+        self.zx_titleLabel.zx_fixTop = 20;
+        self.zx_titleLabel.text = @"暂无数据";
+        self.zx_titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        
+        self.zx_detailLabel.textColor = [UIColor lightGrayColor];
+        self.zx_detailLabel.font = [UIFont systemFontOfSize:14];
+        self.zx_detailLabel.text = @"啊偶，这里没有东西哦~~";
+        
+        [self.zx_actionBtn setTitle:nil forState:UIControlStateNormal];
+        
+    }else{
+        //网络错误的样式
+        self.zx_topImageView.image = [UIImage imageNamed:@"netErr_icon"];
+        self.zx_topImageView.zx_fixWidth = 100;
+        self.zx_titleLabel.text = @"网络异常";
+        self.zx_titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        
+        self.zx_detailLabel.textColor = [UIColor lightGrayColor];
+        self.zx_detailLabel.font = [UIFont systemFontOfSize:14];
+        self.zx_detailLabel.text = @"网络错误，请检查网络设置，长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试网络错误，请检查网络设置，长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试网络错误，请检查网络设置，长度测试长度测";
+        
+        self.zx_actionBtn.zx_fixTop = 15;
+        self.zx_actionBtn.zx_additionWidth = 15;
+        self.zx_actionBtn.zx_additionHeight = 15;
+        self.zx_actionBtn.layer.cornerRadius = 5;
+        [self.zx_actionBtn setTitle:@"点击重试" forState:UIControlStateNormal];
+        self.zx_actionBtn.backgroundColor = [UIColor orangeColor];
+        [self.zx_actionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+}
+@end
+```
+* 在tableView控制器中进行初始化设置
+```objective-c
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    //此处只摘要EmptyView设置相关代码
+    [self.tableView zx_setEmptyView:[DemoEmptyView class]];
+    self.tableView.zx_emptyContentView.zx_btnClickedBlock = ^(UIButton * _Nonnull sender) {
+        NSLog(@"点击了重新加载...");
+        [self.netErrBtn setTitle:@"网络正常" forState:UIControlStateNormal];
+        [self netErrorAction:self.netErrBtn];
+    };
+    
+}
+```
+* 若网络加载失败
+```objective-c
+//emptyView样式为[网络错误]
+self.tableView.zx_emptyContentView.zx_type = 1;
+```
+* 若网络加载成功
+```objective-c
+//emptyView样式为[暂无数据]
+self.tableView.zx_emptyContentView.zx_type = 0;
+```
+* 无需关心何时显示或隐藏ZXEmptyView，ZXEmptyView会自动处理
+#### 具体代码可查看Demo中的DemoTableViewVC
+
+#### 效果预览
+<img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo2.gif"/>
+
+***
+
+### 完全自定义ZXEmptyView
+#### 若ZXEmptyContentView中的子控件数量或种类无法满足需求，可以完全自定义，且仍然可以使用自动居中布局与自动显示
+* 在控制器中
+```objective-c
+DemoCustomEmptyView *customEmptyView = [[[NSBundle mainBundle]loadNibNamed:@"DemoCustomEmptyView" owner:nil options:nil]lastObject];
+customEmptyView.backgroundColor = [UIColor yellowColor];
+customEmptyView.zx_size = CGSizeMake(300, 200);
+[self.view zx_setCustomEmptyView:customEmptyView];
+[self.view zx_showEmptyView];
+```
+#### 具体代码可查看Demo中的DemoCustomViewVC
+#### 效果预览
+<img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo2.png"/>
+
 
 
 
