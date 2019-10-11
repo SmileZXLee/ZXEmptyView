@@ -187,7 +187,7 @@ pod 'ZXEmptyView'
 @end
 ```
 #### 7.其他情况可自行尝试，您只需要进行基本的数据和样式设置而无需设置frame，ZXEmptyContentView会帮助您自动布局
-#### 在控制器中初始化之后，查看效果:
+#### 在控制器中初始化之后，查看以上6种样式的显示效果:
 <img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo1.jpg"/>
 
 ## 使用进阶
@@ -256,6 +256,18 @@ emptyContentView.zx_titleLabel.zx_fixTop = 20;
 ```objective-c
 emptyContentView.zx_titleLabel.zx_fixWidth = 100;
 ```
+* 固定zx_titleLabel的高度，宽度根据文字内容自适应
+```objective-c
+emptyContentView.zx_titleLabel.zx_fixHeight = 30;
+```
+* 设置zx_titleLabel的附加宽度（在原始宽度[label文字宽度]上增加）
+```objective-c
+emptyContentView.zx_titleLabel.zx_additionWidth = 15;
+```
+* 设置zx_titleLabel的附加高度（在原始高度[label文字高度]上增加）
+```objective-c
+emptyContentView.zx_titleLabel.zx_additionHeight = 15;
+```
 * 修改zx_titleLabel的frame(当zx_titleLabel frame改变时会自动调用此block)
 ```objective-c
 self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
@@ -281,11 +293,11 @@ emptyContentView.zx_actionBtn.zx_fixWidth = 100;
 ```objective-c
 emptyContentView.zx_actionBtn.zx_fixHeight = 30;
 ```
-* 固定zx_actionBtn的附加宽度（在原始宽度[按钮文字宽度]上增加）
+* 设置zx_actionBtn的附加宽度（在原始宽度[按钮文字宽度]上增加）
 ```objective-c
 emptyContentView.zx_actionBtn.zx_additionWidth = 15;
 ```
-* 固定zx_actionBtn的附加高度（在原始高度[按钮文字高度]上增加）
+* 设置zx_actionBtn的附加高度（在原始高度[按钮文字高度]上增加）
 ```objective-c
 emptyContentView.zx_actionBtn.zx_additionHeight = 15;
 ```
