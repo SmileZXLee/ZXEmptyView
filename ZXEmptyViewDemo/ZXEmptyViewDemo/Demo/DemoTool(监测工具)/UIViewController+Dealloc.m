@@ -7,11 +7,16 @@
 //
 
 #import "UIViewController+Dealloc.h"
+#import "NSObject+ZXEmptySwizzleMethod.h"
 @implementation UIViewController (Dealloc)
++ (void)load{
+    zx_swizzleMethod(self, NSSelectorFromString(@"dealloc"), @selector(zx_dealloc));
+}
 
-- (void)dealloc{
-#ifdef DEBUG
-    NSLog(@"%@销毁了",[self class]);
-#endif
+- (void)zx_dealloc{
+    #ifdef DEBUG
+        NSLog(@"%@销毁了",[self class]);
+    #endif
+    [self zx_dealloc];
 }
 @end

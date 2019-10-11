@@ -95,12 +95,6 @@
     [self zx_hide];
 }
 
-#pragma mark ZXEmptyContentView销毁
-- (void)dealloc{
-    #ifdef DEBUG
-        NSLog(@"%@销毁了",[self class]);
-    #endif
-}
 #pragma mark - Private
 #pragma mark 点击了emptyView
 - (void)contentViewTap:(UITapGestureRecognizer *)gr{
@@ -172,6 +166,9 @@
     CGFloat height = 0;
     CGFloat strWidth = 0;
     CGFloat fixWidth = [[label valueForKey:@"zx_fixWidth"] doubleValue];
+    CGFloat fixHeight = [[label valueForKey:@"zx_fixHeight"] doubleValue];
+    CGFloat additionWidth = [[label valueForKey:@"zx_additionWidth"] doubleValue];
+    CGFloat additionHeight = [[label valueForKey:@"zx_additionHeight"] doubleValue];
     CGFloat Space = ZXSpace(label);
     if(self.zx_fixWidth){
         if(fixWidth){
@@ -194,7 +191,16 @@
         strWidth = fixWidth;
     }
     height = [label zx_getNormalStringHeightWithFixWidth:strWidth];
+    if(additionHeight && height){
+        height += additionHeight;
+    }
+    if(fixHeight){
+        height = fixHeight;
+    }
     width = strWidth;
+    if(additionWidth && width){
+        width += additionWidth;
+    }
     x = (self.zx_width - width) / 2;
     CGFloat viewOffset = 0;
     if(index){

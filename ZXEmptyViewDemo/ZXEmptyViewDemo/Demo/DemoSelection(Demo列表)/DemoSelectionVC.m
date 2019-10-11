@@ -25,6 +25,7 @@
     self.datas = @[@"显示在控制器View上的ZXEmptyView",@"显示在tableView上的ZXEmptyView",@"显示在collectionView上的ZXEmptyView",@"完全自定义的EmptyView"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate

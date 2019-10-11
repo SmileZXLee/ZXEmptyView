@@ -15,7 +15,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZXEmptyContentView : UIView
-@property(assign,nonatomic)CGFloat zx_fixWidth;
 /**
  emptyView中的顶部ImageView
  */
@@ -75,6 +74,11 @@ NS_ASSUME_NONNULL_BEGIN
  emptyView 距离左侧的固定高度（默认垂直居中）
  */
 @property(assign,nonatomic)CGFloat zx_fixLeft;
+
+/**
+ emptyView的固定宽度(默认为：若子控件中最宽的小于superView - 2 * 10，则为子控件中最宽的宽度，否则为superView - 2 * 10)，若修改这个值，子控件宽度会根据需要自动压缩，同时高度调整
+ */
+@property(assign,nonatomic)CGFloat zx_fixWidth;
 
 /**
  emptyView的subviews距离底部的高度（默认为10）

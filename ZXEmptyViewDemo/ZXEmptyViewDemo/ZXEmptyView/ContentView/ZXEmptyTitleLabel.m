@@ -16,5 +16,4 @@
     [self removeObserver:self forKeyPath:@"text"];
     [self removeObserver:self forKeyPath:@"attributedText"];
 }
-
 @end
