@@ -28,12 +28,12 @@ typedef void (^requestDataBlock)(BOOL result,id data);
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.datas = [NSMutableArray array];
-    
+    __weak typeof(self) weakSelf = self;
     [self.tableView zx_setEmptyView:[DemoEmptyView class]];
     self.tableView.zx_emptyContentView.zx_btnClickedBlock = ^(UIButton * _Nonnull sender) {
         NSLog(@"点击了重新加载...");
-        [self.netErrBtn setTitle:@"网络正常" forState:UIControlStateNormal];
-        [self netErrorAction:self.netErrBtn];
+        [weakSelf.netErrBtn setTitle:@"网络正常" forState:UIControlStateNormal];
+        [weakSelf netErrorAction:weakSelf.netErrBtn];
     };
     
 }
@@ -142,5 +142,6 @@ typedef void (^requestDataBlock)(BOOL result,id data);
         
     });
 }
+
 
 @end

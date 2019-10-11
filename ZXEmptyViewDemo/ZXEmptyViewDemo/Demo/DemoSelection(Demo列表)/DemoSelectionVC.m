@@ -56,7 +56,7 @@
         vc = [[DemoCustomViewVC alloc]init];
     }
     if(vc){
-        vc.title = self.datas[indexPath.row];
+        vc.title = NSStringFromClass([vc class]);
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

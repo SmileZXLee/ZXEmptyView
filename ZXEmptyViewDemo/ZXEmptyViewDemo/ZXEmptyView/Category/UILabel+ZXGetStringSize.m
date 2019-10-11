@@ -10,6 +10,28 @@
 
 @implementation UILabel (ZXGetStringSize)
 
+
+- (CGFloat)zx_getNormalStringWidth{
+    return [self zx_getNormalStringWidthWithFixHeight:self.frame.size.height];
+}
+
+- (CGFloat)zx_getNormalStringWidthWithFixHeight:(CGFloat)fixHeight{
+    CGSize size = [self.text boundingRectWithSize:CGSizeMake(MAXFLOAT, fixHeight)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.font}
+                                          context:nil].size;
+    return size.width;
+}
+
+- (CGFloat)zx_getAttrStringWidth{
+    return [self zx_getAttrStringWidthWithFixHeight:self.frame.size.height];
+}
+
+- (CGFloat)zx_getAttrStringWidthWithFixHeight:(CGFloat)fixHeight{
+    CGSize size = [self.attributedText boundingRectWithSize:CGSizeMake(MAXFLOAT, fixHeight)
+                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                    context:nil].size;
+    return size.height;
+}
+
 - (CGFloat)zx_getNormalStringHeight{
     return [self zx_getNormalStringHeightWithFixWidth:self.frame.size.width];
 }
@@ -19,12 +41,6 @@
     CGSize size = [self.text boundingRectWithSize:CGSizeMake(fixWidth, MAXFLOAT)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.font}
                                           context:nil].size;
     return size.height;
-}
-
-- (CGFloat)zx_getNormalStringWidth{
-    CGSize size = [self.text boundingRectWithSize:CGSizeMake(MAXFLOAT, self.frame.size.height)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.font}
-                                          context:nil].size;
-    return size.width;
 }
 
 - (CGFloat)zx_getAttrStringHeight{
@@ -39,11 +55,7 @@
     return size.height;
 }
 
-- (CGFloat)zx_getAttrStringWidth{
-    CGSize size = [self.attributedText boundingRectWithSize:CGSizeMake(MAXFLOAT, self.frame.size.height)
-                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                                    context:nil].size;
-    return size.height;
-}
+
+
 
 @end

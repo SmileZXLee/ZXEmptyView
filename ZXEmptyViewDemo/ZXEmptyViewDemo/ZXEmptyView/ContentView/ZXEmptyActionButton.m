@@ -35,4 +35,11 @@
         self.block(button);
     }
 }
+
+- (void)dealloc{
+    [self removeObserver:self forKeyPath:@"zx_fixTop"];
+    [self removeObserver:self forKeyPath:@"zx_fixWidth"];
+    [self.titleLabel removeObserver:self.titleLabel forKeyPath:@"text"];
+    [self.titleLabel removeObserver:self.titleLabel forKeyPath:@"attributedText"];
+}
 @end

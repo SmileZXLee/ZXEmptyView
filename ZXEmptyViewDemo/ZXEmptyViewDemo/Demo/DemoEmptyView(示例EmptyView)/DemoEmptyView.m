@@ -16,6 +16,7 @@
 
 - (void)setZx_type:(int)zx_type{
     if(zx_type == 0){
+        //暂无数据的样式
         self.zx_topImageView.image = [UIImage imageNamed:@"nodata_icon"];
         self.zx_topImageView.zx_fixWidth = 100;
         self.zx_titleLabel.zx_fixTop = 20;
@@ -25,10 +26,10 @@
         self.zx_detailLabel.textColor = [UIColor lightGrayColor];
         self.zx_detailLabel.font = [UIFont systemFontOfSize:14];
         self.zx_detailLabel.text = @"啊偶，这里没有东西哦~~";
-        
         [self.zx_actionBtn setTitle:nil forState:UIControlStateNormal];
         
     }else{
+        //网络错误的样式
         self.zx_topImageView.image = [UIImage imageNamed:@"netErr_icon"];
         self.zx_topImageView.zx_fixWidth = 100;
         self.zx_titleLabel.text = @"网络异常";

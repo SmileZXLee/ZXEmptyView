@@ -18,7 +18,7 @@
 @property(assign,nonatomic)SEL tapSel;
 @end
 @implementation ZXEmptyContentView
-#pragma mark - 声明周期
+#pragma mark - 生命周期
 #pragma mark 初始化
 - (instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
@@ -93,6 +93,13 @@
 - (void)didMoveToSuperview{
     [super didMoveToSuperview];
     [self zx_hide];
+}
+
+#pragma mark ZXEmptyContentView销毁
+- (void)dealloc{
+    #ifdef DEBUG
+        NSLog(@"%@销毁了",[self class]);
+    #endif
 }
 #pragma mark - Private
 #pragma mark 点击了emptyView
@@ -174,13 +181,13 @@
         }
     }
     if(label.text.length){
-        strWidth = [label zx_getNormalStringWidth];
+        strWidth = [label zx_getNormalStringWidthWithFixHeight:height];
     }else if(label.attributedText.length){
-        strWidth = [label zx_getAttrStringWidth];
+        strWidth = [label zx_getAttrStringWidthWithFixHeight:height];
     }
     if(strWidth){
-        if(strWidth > self.superview.zx_width - Space * 2){
-            strWidth = self.superview.zx_width - Space * 2;
+        if(strWidth > self.superview.zx_width - ZXOrgFixSpace * 2){
+            strWidth = self.superview.zx_width - ZXOrgFixSpace * 2;
         }
     }
     if(fixWidth && fixWidth < strWidth){
@@ -331,7 +338,12 @@
     NSUInteger index = 0;
     for (UIView *subView in self.subviews) {
         [subView zx_obsKey:@"zx_fixWidth" handler:^(id  _Nonnull newData, id  _Nonnull oldData, id  _Nonnull owner) {
-            if([oldData doubleValue]){
+            if(oldData){
+                [weakSelf relayoutSubviewsFromIndex:index];
+            }
+        }];
+        [subView zx_obsKey:@"zx_fixTop" handler:^(id  _Nonnull newData, id  _Nonnull oldData, id  _Nonnull owner) {
+            if(oldData){
                 [weakSelf relayoutSubviewsFromIndex:index];
             }
         }];
@@ -342,7 +354,7 @@
                 }
             }];
             [subView zx_obsKey:@"zx_fixHeight" handler:^(id  _Nonnull newData, id  _Nonnull oldData, id  _Nonnull owner) {
-                if([oldData doubleValue]){
+                if(oldData){
                     [weakSelf relayoutSubviewsFromIndex:index];
                 }
             }];

@@ -55,6 +55,22 @@ NS_ASSUME_NONNULL_BEGIN
  @return attrString的高度
  */
 - (CGFloat)zx_getAttrStringHeightWithFixWidth:(CGFloat)fixWidth;
+
+/**
+ 获取普通Text的宽度
+
+ @param fixHeight 固定高
+ @return 普通Text的宽度
+ */
+- (CGFloat)zx_getNormalStringWidthWithFixHeight:(CGFloat)fixHeight;
+
+/**
+ 获取attrString的宽度
+ 
+ @param fixHeight 固定高
+ @return attrString的宽度
+ */
+- (CGFloat)zx_getAttrStringWidthWithFixHeight:(CGFloat)fixHeight;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-  //ZXEmptyView内部设置了点击按钮或view自动隐藏，若您不要此功能，请将EmptyView的zx_autoHideWhenTapOrClick设置为NO
+    //ZXEmptyView内部设置了点击按钮或view自动隐藏，若您不要此功能，请将EmptyView的zx_autoHideWhenTapOrClick设置为NO
     [self.view zx_setEmptyView:@"DemoEmptyView" isFull:NO clickedBlock:^(UIButton * _Nullable btn) {
         NSLog(@"点击了按钮");
     } emptyViewClickedBlock:nil];
@@ -27,6 +27,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.view.zx_emptyContentView.zx_detailLabel.text = @"文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变文字改变";
         self.view.zx_emptyContentView.zx_titleLabel.text = @"网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误网络错误";
+        [self.view.zx_emptyContentView.zx_actionBtn setTitle:@"我也发生了改变我也发生了改变我也发生了改变我也发生了改变我也发生了改变" forState:UIControlStateNormal];
     });
 }
 
