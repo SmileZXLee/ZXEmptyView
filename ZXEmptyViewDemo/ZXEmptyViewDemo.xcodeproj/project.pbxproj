@@ -41,6 +41,8 @@
 		742B52BD234B987E00C02C9A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B52BC234B987E00C02C9A /* MBProgressHUD.m */; };
 		742B52C0234B9DE400C02C9A /* DemoUIViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B52BF234B9DE400C02C9A /* DemoUIViewVC.m */; };
 		742B52C4234BA12000C02C9A /* DemoCustomViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B52C3234BA12000C02C9A /* DemoCustomViewVC.m */; };
+		748F9CD02351FC7600190591 /* DemoMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F9CCE2351FC7600190591 /* DemoMain.m */; };
+		748F9CD12351FC7600190591 /* DemoMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 748F9CCF2351FC7600190591 /* DemoMain.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,9 @@
 		742B52C1234B9E3600C02C9A /* ZXEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXEmptyView.h; sourceTree = "<group>"; };
 		742B52C2234BA12000C02C9A /* DemoCustomViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoCustomViewVC.h; sourceTree = "<group>"; };
 		742B52C3234BA12000C02C9A /* DemoCustomViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoCustomViewVC.m; sourceTree = "<group>"; };
+		748F9CCD2351FC7600190591 /* DemoMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoMain.h; sourceTree = "<group>"; };
+		748F9CCE2351FC7600190591 /* DemoMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoMain.m; sourceTree = "<group>"; };
+		748F9CCF2351FC7600190591 /* DemoMain.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoMain.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +240,7 @@
 				742B52C6234BAA3000C02C9A /* DemoTableView(显示在tableView上) */,
 				742B52C7234BAA6200C02C9A /* DemoCollectionView(显示在collectionView上) */,
 				742B52C9234BAAAB00C02C9A /* DemoCustomView(完全自定义) */,
+				748F9CCC2351FC5500190591 /* DemoMain */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -342,6 +348,16 @@
 			path = "DemoCustomView(完全自定义)";
 			sourceTree = "<group>";
 		};
+		748F9CCC2351FC5500190591 /* DemoMain */ = {
+			isa = PBXGroup;
+			children = (
+				748F9CCD2351FC7600190591 /* DemoMain.h */,
+				748F9CCE2351FC7600190591 /* DemoMain.m */,
+				748F9CCF2351FC7600190591 /* DemoMain.xib */,
+			);
+			path = DemoMain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -422,6 +438,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				748F9CD12351FC7600190591 /* DemoMain.xib in Resources */,
 				742B52BA234B833500C02C9A /* DemoCustomEmptyView.xib in Resources */,
 				742B52AB234B2D1400C02C9A /* DemoSelectionVC.xib in Resources */,
 				742B523C2344503B00C02C9A /* LaunchScreen.storyboard in Resources */,
@@ -458,6 +475,7 @@
 				74187883235094F90005BA25 /* UIViewController+Dealloc.m in Sources */,
 				742B52AA234B2D1400C02C9A /* DemoSelectionVC.m in Sources */,
 				742B52702346E5BE00C02C9A /* UILabel+ZXGetStringSize.m in Sources */,
+				748F9CD02351FC7600190591 /* DemoMain.m in Sources */,
 				742B528B2348B3BB00C02C9A /* NSObject+ZXEmptySwizzleMethod.m in Sources */,
 				742B526323449B1E00C02C9A /* ZXEmptyActionButton.m in Sources */,
 				742B52312344503900C02C9A /* AppDelegate.m in Sources */,

@@ -11,6 +11,7 @@
 #import "DemoTableViewVC.h"
 #import "DemoCollectionViewVC.h"
 #import "DemoCustomViewVC.h"
+#import "DemoMain.h"
 
 @interface DemoSelectionVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"ZXEmptyViewDemo";
-    self.datas = @[@"显示在控制器View上的ZXEmptyView",@"显示在tableView上的ZXEmptyView",@"显示在collectionView上的ZXEmptyView",@"完全自定义的EmptyView"];
+    self.datas = @[@"显示在控制器View上的ZXEmptyView",@"显示在tableView上的ZXEmptyView",@"显示在collectionView上的ZXEmptyView",@"完全自定义的EmptyView",@"模拟真实项目使用环境的Demo"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.navigationController.navigationBar.translucent = NO;
@@ -55,6 +56,8 @@
         vc = [[DemoCollectionViewVC alloc]init];
     }else if(indexPath.row == 3){
         vc = [[DemoCustomViewVC alloc]init];
+    }else if(indexPath.row == 4){
+        vc = [[DemoMain alloc]init];
     }
     if(vc){
         vc.title = NSStringFromClass([vc class]);

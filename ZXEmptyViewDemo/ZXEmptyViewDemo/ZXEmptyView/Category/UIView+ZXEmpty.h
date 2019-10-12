@@ -50,6 +50,26 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull clickedBlock:(zx_clickedBlock)clickedBlock emptyViewClickedBlock:(zx_emptyViewClickedBlock)emptyViewClickedBlock;
 
 /**
+ 为当前view设置根据内容自适应大小的emptyView
+
+ @param emptyViewObj ZXEmptyContentView(或继承于它)对象(id)或ZXEmptyContentView(或继承于它)的class(Class)或ZXEmptyContentView(或继承于它)对象的class名(NSString)
+ @param isFull emptyView是否填充满整个view，默认为否
+ @param target actionbtn点击target
+ @param sel actionbtn点击selector
+ */
+- (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull clickedTarget:(id)target selector:(SEL)sel;
+
+/**
+ 为当前view设置根据内容自适应大小的emptyView
+ 
+ @param emptyViewObj ZXEmptyContentView(或继承于它)对象(id)或ZXEmptyContentView(或继承于它)的class(Class)或ZXEmptyContentView(或继承于它)对象的class名(NSString)
+ @param isFull emptyView是否填充满整个view，默认为否
+ @param target emptyView点击target
+ @param sel emptyView点击selector
+ */
+- (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull emptyViewClickedTarget:(id)target selector:(SEL)sel;
+
+/**
  为当前view设置完全自定义的emptyView
 
  @param customView 自定义的emptyView

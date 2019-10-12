@@ -62,6 +62,16 @@ static NSString *fullEmptyViewKey = @"zx_fullEmptyViewKey";
     self.zx_emptyContentView.zx_emptyViewClickedBlock = emptyViewClickedBlock;
 }
 
+- (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull clickedTarget:(id)target selector:(SEL)sel{
+    [self zx_setEmptyView:emptyViewObj isFull:isFull];
+    [self.zx_emptyContentView zx_btnAddTarget:target action:sel];
+}
+
+- (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull emptyViewClickedTarget:(id)target selector:(SEL)sel{
+    [self zx_setEmptyView:emptyViewObj isFull:isFull];
+    [self.zx_emptyContentView zx_emptyViewAddTarget:target action:sel];
+}
+
 #pragma mark - public
 
 - (void)zx_updateFrame:(zx_updateFrameBlock)block{

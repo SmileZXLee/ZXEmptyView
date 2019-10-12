@@ -7,10 +7,10 @@
 //
 
 #import "DemoTableViewVC.h"
+#import "MBProgressHUD.h"
+
 #import "ZXEmptyView.h"
 #import "DemoEmptyView.h"
-
-#import "MBProgressHUD.h"
 typedef void (^requestDataBlock)(BOOL result,id data);
 @interface DemoTableViewVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -122,10 +122,8 @@ typedef void (^requestDataBlock)(BOOL result,id data);
 
 #pragma mark - 网络请求，获取数据
 - (void)requestDataCallBack:(requestDataBlock)requestDataBlock error:(BOOL)error hasData:(BOOL)hasData{
-    [self.tableView zx_startLoading];
     [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView zx_endLoading];
         [MBProgressHUD hideHUDForView:self.tableView animated:YES];
         if(error){
             requestDataBlock(NO,nil);
