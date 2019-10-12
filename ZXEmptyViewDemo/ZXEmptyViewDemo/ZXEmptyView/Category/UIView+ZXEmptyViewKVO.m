@@ -24,11 +24,11 @@ static NSString *zx_observingKeyPathDictionaryKey = @"zx_observingKeyPathDiction
     [self zx_dealloc];
 }
 
-- (void)setZx_observingKeyPathDictionary:(NSMutableArray *)zx_observingKeyPathDictionary{
+- (void)setZx_observingKeyPathDictionary:(NSMutableDictionary *)zx_observingKeyPathDictionary{
     objc_setAssociatedObject(self, &zx_observingKeyPathDictionaryKey, zx_observingKeyPathDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSMutableArray *)zx_observingKeyPathDictionary{
+- (NSMutableDictionary *)zx_observingKeyPathDictionary{
     return objc_getAssociatedObject(self, &zx_observingKeyPathDictionaryKey);
 }
 
