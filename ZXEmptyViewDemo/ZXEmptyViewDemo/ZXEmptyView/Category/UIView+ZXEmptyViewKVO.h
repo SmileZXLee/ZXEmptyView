@@ -20,6 +20,11 @@ typedef void(^obsResultHandler) (id newData, id oldData,id owner);
  @param handler 监听结果回调
  */
 -(void)zx_obsKey:(NSString *)key handler:(obsResultHandler)handler;
+
+/**
+ 记录已经添加监听的keyPath与对应的block
+ */
+@property(strong,nonatomic,readonly)NSMutableDictionary *zx_observingKeyPathDictionary;
 @end
 
 NS_ASSUME_NONNULL_END

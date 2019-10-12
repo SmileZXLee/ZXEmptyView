@@ -133,7 +133,7 @@ typedef void (^requestDataBlock)(BOOL result,id data);
             NSMutableArray *dataArr = [NSMutableArray array];
             if(hasData){
                 for(NSUInteger i = 0;i < 20;i++){
-                    NSString *str = [NSString stringWithFormat:@"第%lu行",i];
+                    NSString *str = [NSString stringWithFormat:@"第%u行",i];
                     [dataArr addObject:str];
                 }
             }

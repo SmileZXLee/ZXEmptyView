@@ -23,7 +23,7 @@
     self.datas = [NSMutableArray array];
     self.collectionView.backgroundColor = [UIColor greenColor];
     for(NSUInteger i = 0;i < 20;i++){
-        NSString *str = [NSString stringWithFormat:@"第%lu行",i];
+        NSString *str = [NSString stringWithFormat:@"第%u行",i];
         [self.datas addObject:str];
     }
     [self initCollectionView];

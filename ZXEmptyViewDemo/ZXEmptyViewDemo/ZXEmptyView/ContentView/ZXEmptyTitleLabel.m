@@ -10,10 +10,4 @@
 
 @implementation ZXEmptyTitleLabel
 
-- (void)dealloc{
-    [self removeObserver:self forKeyPath:@"zx_fixTop"];
-    [self removeObserver:self forKeyPath:@"zx_fixWidth"];
-    [self removeObserver:self forKeyPath:@"text"];
-    [self removeObserver:self forKeyPath:@"attributedText"];
-}
 @end

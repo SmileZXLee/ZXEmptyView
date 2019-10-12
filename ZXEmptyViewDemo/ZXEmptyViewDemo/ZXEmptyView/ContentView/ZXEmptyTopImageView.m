@@ -12,12 +12,4 @@
 @end
 @implementation ZXEmptyTopImageView
 
-- (void)dealloc{
-    [self removeObserver:self forKeyPath:@"zx_fixTop"];
-    [self removeObserver:self forKeyPath:@"zx_fixWidth"];
-    [self removeObserver:self forKeyPath:@"image"];
-    [self removeObserver:self forKeyPath:@"zx_fixHeight"];
-    [self removeObserver:self forKeyPath:@"zx_fixSize"];
-}
-
 @end
