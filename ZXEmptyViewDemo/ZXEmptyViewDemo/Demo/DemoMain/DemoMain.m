@@ -105,10 +105,10 @@ typedef void (^requestDataBlock)(BOOL result,id data);
                 weakSelf.tableView.zx_emptyContentView.zx_detailLabel.text = @"这是请求超时的时候显示的内容这是请求超时的时候显示的内容这是请求超时的时候显示的内容这是请求超时的时候显示的内容";
             }else if(errCode == 1){
                 weakSelf.tableView.zx_emptyContentView.zx_titleLabel.text = @"网络未连接";
-                weakSelf.tableView.zx_emptyContentView.zx_detailLabel.text = @"这是网络未连接的时候显示的内容这是请求超时的时候显示的内容这是请求超时的时候显示的内容这是请求超时的时候显示的内容";
+                weakSelf.tableView.zx_emptyContentView.zx_detailLabel.text = @"这是网络未连接的时候显示的内容这是网络未连接的时候显示的内容这是网络未连接的时候显示的内容这是网络未连接的时候显示的内容";
             }else if(errCode == 2){
                 weakSelf.tableView.zx_emptyContentView.zx_titleLabel.text = @"服务器错误";
-                weakSelf.tableView.zx_emptyContentView.zx_detailLabel.text = @"这是服务器错误的时候显示的内容这是请求超时的时候显示的内容这是请求超时的时候显示的内容这是请求超时的时候显示的内容";
+                weakSelf.tableView.zx_emptyContentView.zx_detailLabel.text = @"这是服务器错误的时候显示的内容这是服务器错误的时候显示的内容这是服务器错误的时候显示的内容这是服务器错误的时候显示的内容";
             }
             
         }else{
