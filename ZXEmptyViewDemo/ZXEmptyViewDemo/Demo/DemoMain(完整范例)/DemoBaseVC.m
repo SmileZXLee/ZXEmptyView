@@ -30,7 +30,7 @@
     }
     if(error){
         //设置显示网络错误的样式
-        self.emptyView.zx_emptyContentView.zx_type = 1;
+        self.emptyView.zx_type = 1;
         //网络请求错误，可以根据错误原因重新设置错误提示内容
         //这一部分可以直接封装在DemoEmptyView中，同样用zx_type控制样式，此处只是为了便于阅读
         int errCode = [error intValue];
