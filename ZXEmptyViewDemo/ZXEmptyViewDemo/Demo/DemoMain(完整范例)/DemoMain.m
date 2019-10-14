@@ -8,7 +8,6 @@
 
 #import "DemoMain.h"
 #import "MBProgressHUD.h"
-#import "ZXEmptyView.h"
 #warning 请查看此处完整的创建步骤
 /*
 构建一个完整的EmptyView有3步
