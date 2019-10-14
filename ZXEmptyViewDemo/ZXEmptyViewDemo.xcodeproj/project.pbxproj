@@ -43,6 +43,7 @@
 		742B52C4234BA12000C02C9A /* DemoCustomViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B52C3234BA12000C02C9A /* DemoCustomViewVC.m */; };
 		748F9CD02351FC7600190591 /* DemoMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F9CCE2351FC7600190591 /* DemoMain.m */; };
 		748F9CD12351FC7600190591 /* DemoMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 748F9CCF2351FC7600190591 /* DemoMain.xib */; };
+		748F9CD42354060B00190591 /* DemoBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F9CD32354060B00190591 /* DemoBaseVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,8 @@
 		748F9CCD2351FC7600190591 /* DemoMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoMain.h; sourceTree = "<group>"; };
 		748F9CCE2351FC7600190591 /* DemoMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoMain.m; sourceTree = "<group>"; };
 		748F9CCF2351FC7600190591 /* DemoMain.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoMain.xib; sourceTree = "<group>"; };
+		748F9CD22354060B00190591 /* DemoBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoBaseVC.h; sourceTree = "<group>"; };
+		748F9CD32354060B00190591 /* DemoBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoBaseVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,7 +243,7 @@
 				742B52C6234BAA3000C02C9A /* DemoTableView(显示在tableView上) */,
 				742B52C7234BAA6200C02C9A /* DemoCollectionView(显示在collectionView上) */,
 				742B52C9234BAAAB00C02C9A /* DemoCustomView(完全自定义) */,
-				748F9CCC2351FC5500190591 /* DemoMain */,
+				748F9CCC2351FC5500190591 /* DemoMain(完整范例) */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -348,14 +351,16 @@
 			path = "DemoCustomView(完全自定义)";
 			sourceTree = "<group>";
 		};
-		748F9CCC2351FC5500190591 /* DemoMain */ = {
+		748F9CCC2351FC5500190591 /* DemoMain(完整范例) */ = {
 			isa = PBXGroup;
 			children = (
 				748F9CCD2351FC7600190591 /* DemoMain.h */,
 				748F9CCE2351FC7600190591 /* DemoMain.m */,
 				748F9CCF2351FC7600190591 /* DemoMain.xib */,
+				748F9CD22354060B00190591 /* DemoBaseVC.h */,
+				748F9CD32354060B00190591 /* DemoBaseVC.m */,
 			);
-			path = DemoMain;
+			path = "DemoMain(完整范例)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -490,6 +495,7 @@
 				742B525D23449AF500C02C9A /* ZXEmptyTitleLabel.m in Sources */,
 				742B528F2348CA2C00C02C9A /* DemoTableViewVC.m in Sources */,
 				742B529F234B0E7000C02C9A /* DemoCollectionViewCell.m in Sources */,
+				748F9CD42354060B00190591 /* DemoBaseVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

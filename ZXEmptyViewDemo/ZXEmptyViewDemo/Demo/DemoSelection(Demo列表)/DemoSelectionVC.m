@@ -12,7 +12,7 @@
 #import "DemoCollectionViewVC.h"
 #import "DemoCustomViewVC.h"
 #import "DemoMain.h"
-
+#import "UIViewController+Dealloc.h"
 @interface DemoSelectionVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *datas;

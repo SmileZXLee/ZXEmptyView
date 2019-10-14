@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DemoBaseVC.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DemoMain : UIViewController
+@interface DemoMain : DemoBaseVC
 
 @end
 
