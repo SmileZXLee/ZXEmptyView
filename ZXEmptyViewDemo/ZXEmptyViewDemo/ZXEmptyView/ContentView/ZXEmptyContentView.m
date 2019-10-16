@@ -116,6 +116,10 @@
 #pragma mark 刷新imageView的布局
 - (void)relayoutImageView:(UIImageView *)imageView index:(NSUInteger)index{
     UIImage *topImg = imageView.image;
+    if(!topImg){
+        [imageView setValue:[NSValue valueWithCGRect:CGRectZero] forKey:@"frame"];
+        return;
+    }
     CGFloat x = 0;
     CGFloat y = 0;
     CGFloat width = 0;

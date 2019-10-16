@@ -126,6 +126,7 @@ static NSString *fullEmptyViewKey = @"zx_fullEmptyViewKey";
 - (void)setFullEmptyView:(ZXEmptyContentView *)contentView{
     [self removeOldEmptyView];
     ZXFullEmptyView *emptyView = [[ZXFullEmptyView alloc]init];
+    emptyView.backgroundColor = [UIColor whiteColor];
     self.zx_fullEmptyView = emptyView;
     emptyView.frame = self.bounds;
     [emptyView addSubview:contentView];
