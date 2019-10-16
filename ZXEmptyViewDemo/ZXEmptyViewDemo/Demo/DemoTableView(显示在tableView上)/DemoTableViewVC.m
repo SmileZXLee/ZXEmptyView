@@ -102,16 +102,16 @@ typedef void (^requestDataBlock)(BOOL result,id data);
     __weak typeof(self) weakSelf = self;
     if([sender.currentTitle isEqualToString:@"网络错误"]){
         //点击了网络错误
-        self.tableView.zx_emptyContentView.zx_type = 1;
         [self requestDataCallBack:^(BOOL result, id data) {
+            weakSelf.tableView.zx_emptyContentView.zx_type = 1;
             weakSelf.datas = data;
             [weakSelf.tableView reloadData];
         }error:YES hasData:NO];
         [sender setTitle:@"网络正常" forState:UIControlStateNormal];
     }else{
         //点击了网络正常
-        self.tableView.zx_emptyContentView.zx_type = 0;
         [self requestDataCallBack:^(BOOL result, id data) {
+            weakSelf.tableView.zx_emptyContentView.zx_type = 0;
             weakSelf.datas = data;
             [weakSelf.tableView reloadData];
         }error:NO hasData:YES];

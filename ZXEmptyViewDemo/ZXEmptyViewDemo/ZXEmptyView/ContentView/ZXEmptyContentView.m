@@ -194,16 +194,16 @@
     if(fixWidth && fixWidth < strWidth){
         strWidth = fixWidth;
     }
-    height = [label zx_getNormalStringHeightWithFixWidth:strWidth];
+    width = strWidth;
+    if(additionWidth && width){
+        width += additionWidth;
+    }
+    height = [label zx_getNormalStringHeightWithFixWidth:width];
     if(additionHeight && height){
         height += additionHeight;
     }
     if(fixHeight){
         height = fixHeight;
-    }
-    width = strWidth;
-    if(additionWidth && width){
-        width += additionWidth;
     }
     x = (self.zx_width - width) / 2;
     CGFloat viewOffset = 0;
@@ -251,16 +251,16 @@
     if(fixWidth && fixWidth < strWidth){
         strWidth = fixWidth;
     }
-    height = [button.titleLabel zx_getNormalStringHeightWithFixWidth:strWidth];
+    width = strWidth;
+    if(additionWidth && width){
+        width += additionWidth;
+    }
+    height = [button.titleLabel zx_getNormalStringHeightWithFixWidth:width];
     if(additionHeight && height){
         height += additionHeight;
     }
     if(fixHeight){
         height = fixHeight;
-    }
-    width = strWidth;
-    if(additionWidth && width){
-        width += additionWidth;
     }
     x = (self.zx_width - width) / 2;
     CGFloat viewOffset = 0;
