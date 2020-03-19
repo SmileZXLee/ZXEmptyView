@@ -19,13 +19,13 @@ pod 'ZXEmptyView'
 
 ## 起步
 ### 了解ZXEmptyView基本构造
-* ZXEmptyView的操作核心类为:ZXEmptyContentView
-* ZXEmptyContentView中从上到下有四个基本控件:zx_topImageView，zx_titleLabel，zx_detailLabel，zx_actionBtn
-* 开发者可以创建一个EmptyView继承于ZXEmptyContentView，并重写zx_customSetting，在其中修改ZXEmptyContentView中四个控件的值与样式
-* 若需要把ZXEmptyView添加到self.view上，则调用[self.view zx_setEmptyView:@"EmptyClass"]进行初始化
-* 在任何地方任何时间都可以通过self.view.zx_emptyContentView修改其内部控件的值与样式，修改后emptyContentView布局会自动刷新
+* `ZXEmptyView`的操作核心类为:`ZXEmptyContentView`
+* `ZXEmptyContentView`中从上到下有四个基本控件:`zx_topImageView`，`zx_titleLabel`，`zx_detailLabel`，`zx_actionBtn`
+* 开发者可以创建一个EmptyView继承于`ZXEmptyContentView`，并重写`zx_customSetting`方法，在其中修改`ZXEmptyContentView`中四个控件的值与样式
+* 若需要把`ZXEmptyView`添加到self.view上，则调用`[self.view zx_setEmptyView:@"EmptyClass"]`进行初始化
+* 在任何地方任何时间都可以通过`self.view.zx_emptyContentView`修改其内部控件的值与样式，修改后emptyContentView布局会自动刷新
 ### 基础初始化示例
-* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+* 创建`DemoEmptyView`，继承于`ZXEmptyContentView`，重写`zx_customSetting`方法，设置自定义的样式
 ```objective-c
 @implementation DemoEmptyView
 //重写zx_customSetting方法
@@ -54,10 +54,45 @@ pod 'ZXEmptyView'
 ```
 * 至此，一个EmptyView就已创建完毕，进入目标控制器即可发现EmptyView
 
+### 自动显示或隐藏EmptyView(一行代码调用)
+#### 此功能会自动根据tableView或collectionView的数据源来控制是否显示EmptyView，若存在header，将会自动向下偏移至适当高度
+
+* 在含有tableView或collectionView的控制器的viewDidLoad中(注意这边的`DemoEmptyView`需要自己创建，继承于`ZXEmptyContentView`)
+```objective-c
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.tableView zx_setEmptyView:@"DemoEmptyView"];
+}
+```
+或
+```objective-c
+
+[self.collectionView zx_setEmptyView:@"DemoEmptyView"];
+```
+即可
+
+* 当然，我们可以更方便地管理统一来管理空数据图
+```objective-c
+//在base控制器中，判断是否有tableView，如果有就直接给它初始化空数据图，无需每个控制器都写一遍
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    UITableView *tableView = [self valueForKey:@"tableView"];
+    if(tableView){
+        [tableView zx_setEmptyView:@"DemoEmptyView"];
+    }
+    UITableView *collectionView = [self valueForKey:@"collectionView"];
+    if(collectionView){
+        [collectionView zx_setEmptyView:@"DemoEmptyView"];
+    }
+}
+```
+一劳永逸！
+
+
 ### 基础样式示例
-### ZXEmptyContentView提供了丰富的样式自定义接口，您可以轻松快速地设置需要的EmptyView
-#### 1.仅显示titleLabel
-* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+### `ZXEmptyContentView`提供了丰富的样式自定义接口，您可以轻松快速地设置需要的EmptyView
+#### 1.仅显示`titleLabel`
+* 创建`DemoEmptyView`，继承于`ZXEmptyContentView`，重写`zx_customSetting`方法，设置自定义的样式
 ```objective-c
 @implementation DemoEmptyView
 //重写zx_customSetting方法
@@ -69,8 +104,8 @@ pod 'ZXEmptyView'
 @end
 ```
 
-#### 2.显示titleLabel和detailLabel
-* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+#### 2.显示`titleLabel`和`detailLabel`
+* 创建`DemoEmptyView`，继承于`ZXEmptyContentView`，重写`zx_customSetting`方法，设置自定义的样式
 ```objective-c
 @implementation DemoEmptyView
 //重写zx_customSetting方法
@@ -87,8 +122,8 @@ pod 'ZXEmptyView'
 @end
 ```
 
-#### 3.显示topImageView、titleLabel和detailLabel
-* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+#### 3.显示`topImageView`、`titleLabel`和`detailLabel`
+* 创建`DemoEmptyView`，继承于`ZXEmptyContentView`，重写`zx_customSetting`方法，设置自定义的样式
 ```objective-c
 @implementation DemoEmptyView
 //重写zx_customSetting方法
@@ -109,8 +144,8 @@ pod 'ZXEmptyView'
 @end
 ```
 
-#### 4.显示topImageView、titleLabel和detailLabel和actionBtn
-* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+#### 4.显示`topImageView`、`titleLabel`和`detailLabel`和`actionBtn`
+* 创建`DemoEmptyView`，继承于`ZXEmptyContentView`，重写zx_customSetting方法，设置自定义的样式
 ```objective-c
 @implementation DemoEmptyView
 //重写zx_customSetting方法
@@ -141,8 +176,8 @@ pod 'ZXEmptyView'
 @end
 ```
 
-#### 5.显示titleLabel和actionBtn
-* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+#### 5.显示`titleLabel`和`actionBtn`
+* 创建`DemoEmptyView`，继承于`ZXEmptyContentView`，重写`zx_customSetting`方法，设置自定义的样式
 ```objective-c
 @implementation DemoEmptyView
 //重写zx_customSetting方法
@@ -164,8 +199,8 @@ pod 'ZXEmptyView'
 @end
 ```
 
-#### 6.显示topImageView和actionBtn
-* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+#### 6.显示`topImageView`和`actionBtn`
+* 创建DemoEmptyView，继承于`ZXEmptyContentView`，重写`zx_customSetting`方法，设置自定义的样式
 ```objective-c
 @implementation DemoEmptyView
 //重写zx_customSetting方法
@@ -186,34 +221,34 @@ pod 'ZXEmptyView'
 }
 @end
 ```
-#### 7.其他情况可自行尝试，您只需要进行基本的数据和样式设置而无需设置frame，ZXEmptyContentView会帮助您自动布局
+#### 7.其他情况可自行尝试，您只需要进行基本的数据和样式设置而无需设置frame，`ZXEmptyContentView`会帮助您自动布局
 #### 在控制器中初始化之后，查看以上6种样式的显示效果:
 <img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo1.jpg"/>
 
 ## 使用进阶
-### ZXEmptyContentView布局修改
-#### 获取ZXEmptyContentView对象
+### `ZXEmptyContentView`布局修改
+#### 获取`ZXEmptyContentView`对象
 ```objective-c
 //若已经调用了初始化方法，如self.view zx_setEmptyView...，则ZXEmptyContentView将会添加在self.view上，使用下面的方式可以获取ZXEmptyContentView对象
 ZXEmptyContentView *emptyContentView = self.view.zx_emptyContentView;
 ```
 
-#### 修改ZXEmptyContentView自身布局
-* ZXEmptyContentView大小会根据子控件的frame变化自动变化，且自动居中，您可以在此基础上进行自定义更改
-* 设置ZXEmptyContentView距离顶部的固定高度（默认水平居中）
+#### 修改`ZXEmptyContentView`自身布局
+* `ZXEmptyContentView`大小会根据子控件的frame变化自动变化，且自动居中，您可以在此基础上进行自定义更改
+* 设置Z`XEmptyContentView`距离顶部的固定高度（默认水平居中）
 ```objective-c
 emptyContentView.zx_fixTop = 30;
 ```
-* 设置ZXEmptyContentView距离左侧的固定距离（默认垂直居中）
+* 设置`ZXEmptyContentView`距离左侧的固定距离（默认垂直居中）
 ```objective-c
 emptyContentView.zx_fixLeft = 30;
 ```
-* 设置ZXEmptyContentView的固定宽度（默认等于子控件中最宽的宽度，若超过EmptyContentView所属view的宽度-2*10，则为所属view的宽度-2*10）
+* 设置`ZXEmptyContentView`的固定宽度（默认等于子控件中最宽的宽度，若超过EmptyContentView所属view的宽度-2*10，则为所属view的宽度-2*10）
 ```objective-c
 //其子控件的宽度将被自动压缩，如内部label文字不够显示，则高度自动变高
 emptyContentView.zx_fixWidth = 300;
 ```
-* 修改ZXEmptyContentView的frame(当ZXEmptyContentView frame改变时会自动调用此block)
+* 修改`ZXEmptyContentView`的frame(当`ZXEmptyContentView` frame改变时会自动调用此block)
 ```objective-c
 self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
     //将orgFrame修改后返回，orgFrame为自动布局之后ZXEmptyContentView的frame
@@ -221,25 +256,25 @@ self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
 };
 ```
 *** 
-#### 修改ZXEmptyContentView 子控件布局
-#### 修改zx_topImageView布局
+#### 修改`ZXEmptyContentView` 子控件布局
+#### 修改`zx_topImageView`布局
 * 修改zx_topImageView距离顶部高度(默认为10)
 ```objective-c
 emptyContentView.zx_topImageView.zx_fixTop = 20;
 ```
-* 固定zx_topImageView的宽度，高度根据图片比例自适应(默认为image的宽度)
+* 固定`zx_topImageView`的宽度，高度根据图片比例自适应(默认为image的宽度)
 ```objective-c
 emptyContentView.zx_topImageView.zx_fixWidth = 100;
 ```
-* 固定zx_topImageView的高度，宽度根据图片比例自适应(默认为image的高度)
+* 固定`zx_topImageView`的高度，宽度根据图片比例自适应(默认为image的高度)
 ```objective-c
 emptyContentView.zx_topImageView.zx_fixHeight = 100;
 ```
-* 固定zx_topImageView的size(默认为image的size)
+* 固定`zx_topImageView`的size(默认为image的size)
 ```objective-c
 emptyContentView.zx_topImageView.zx_fixSize = CGSizeMake(100,100);
 ```
-* 修改zx_topImageView的frame(当zx_topImageView frame改变时会自动调用此block)
+* 修改`zx_topImageView`的frame(当zx_topImageView frame改变时会自动调用此block)
 ```objective-c
 self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
     //将orgFrame修改后返回，orgFrame为自动布局之后zx_topImageView的frame
@@ -247,28 +282,28 @@ self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
 };
 ```
 *** 
-#### 修改zx_titleLabel布局
-* 修改zx_titleLabel距离顶部高度(默认为10)
+#### 修改`zx_titleLabel`布局
+* 修改`zx_titleLabel`距离顶部高度(默认为10)
 ```objective-c
 emptyContentView.zx_titleLabel.zx_fixTop = 20;
 ```
-* 固定zx_titleLabel的宽度，高度根据文字内容自适应(默认跟从ZXEmptyContentView自动调整)
+* 固定`zx_titleLabel`的宽度，高度根据文字内容自适应(默认跟从ZXEmptyContentView自动调整)
 ```objective-c
 emptyContentView.zx_titleLabel.zx_fixWidth = 100;
 ```
-* 固定zx_titleLabel的高度，宽度根据文字内容自适应
+* 固定`zx_titleLabel`的高度，宽度根据文字内容自适应
 ```objective-c
 emptyContentView.zx_titleLabel.zx_fixHeight = 30;
 ```
-* 设置zx_titleLabel的附加宽度（在原始宽度[label文字宽度]上增加）
+* 设置`zx_titleLabel`的附加宽度（在原始宽度[label文字宽度]上增加）
 ```objective-c
 emptyContentView.zx_titleLabel.zx_additionWidth = 15;
 ```
-* 设置zx_titleLabel的附加高度（在原始高度[label文字高度]上增加）
+* 设置`zx_titleLabel`的附加高度（在原始高度[label文字高度]上增加）
 ```objective-c
 emptyContentView.zx_titleLabel.zx_additionHeight = 15;
 ```
-* 修改zx_titleLabel的frame(当zx_titleLabel frame改变时会自动调用此block)
+* 修改`zx_titleLabel`的frame(当zx_titleLabel frame改变时会自动调用此block)
 ```objective-c
 self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
     //将orgFrame修改后返回，orgFrame为自动布局之后zx_titleLabel的frame
@@ -276,32 +311,32 @@ self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
 };
 ```
 *** 
-#### 修改zx_detailLabel布局
-* 同zx_titleLabel
+#### 修改`zx_detailLabel`布局
+* 同`zx_titleLabel`
 
 *** 
-#### 修改zx_actionBtn布局
-* 修改zx_actionBtn距离顶部高度(默认为10)
+#### 修改`zx_actionBtn`布局
+* 修改`zx_actionBtn`距离顶部高度(默认为10)
 ```objective-c
 emptyContentView.zx_actionBtn.zx_fixTop = 20;
 ```
-* 固定zx_actionBtn的宽度，高度根据文字内容自适应(默认跟从ZXEmptyContentView自动调整)
+* 固定`zx_actionBtn`的宽度，高度根据文字内容自适应(默认跟从ZXEmptyContentView自动调整)
 ```objective-c
 emptyContentView.zx_actionBtn.zx_fixWidth = 100;
 ```
-* 固定zx_actionBtn的高度，宽度根据文字内容自适应
+* 固定`zx_actionBtn`的高度，宽度根据文字内容自适应
 ```objective-c
 emptyContentView.zx_actionBtn.zx_fixHeight = 30;
 ```
-* 设置zx_actionBtn的附加宽度（在原始宽度[按钮文字宽度]上增加）
+* 设置`zx_actionBtn`的附加宽度（在原始宽度[按钮文字宽度]上增加）
 ```objective-c
 emptyContentView.zx_actionBtn.zx_additionWidth = 15;
 ```
-* 设置zx_actionBtn的附加高度（在原始高度[按钮文字高度]上增加）
+* 设置`zx_actionBtn`的附加高度（在原始高度[按钮文字高度]上增加）
 ```objective-c
 emptyContentView.zx_actionBtn.zx_additionHeight = 15;
 ```
-* 修改zx_actionBtn的frame(当zx_actionBtn frame改变时会自动调用此block)
+* 修改`zx_actionBtn`的frame(当zx_actionBtn frame改变时会自动调用此block)
 ```objective-c
 self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
     //将orgFrame修改后返回，orgFrame为自动布局之后zx_actionBtn的frame
@@ -309,23 +344,23 @@ self.zx_handleFrame = ^CGRect(CGRect orgFrame) {
 };
 ```
 *** 
-#### ZXEmptyContentView 子控件统一布局
-* 设置ZXEmptyContentView的subviews距离底部的高度（默认为10）
+#### `ZXEmptyContentView` 子控件统一布局
+* 设置`ZXEmptyContentView`的subviews距离底部的高度（默认为10）
 ```objective-c
 emptyContentView.zx_subviewsMarginBottom = 20;
 ```
-* 设置ZXEmptyContentView的subviews之间的间隙（默认为10）
+* 设置`ZXEmptyContentView`的subviews之间的间隙（默认为10）
 ```objective-c
 emptyContentView.zx_defaultSubviewsSpace = 20;
 ```
 *** 
-### ZXEmptyContentView数据设置
-#### 设置ZXEmptyContentView的子控件数据
-* ZXEmptyContentView的子控件包括zx_topImageView、zx_titleLabel、zx_detailLabel、zx_actionBtn
-* 您可以在自定义EmptyView继承于ZXEmptyContentView并重写zx_customSetting的时候进行初始化设置
-* 您也可以在控制器或其他地方通过view(ZXEmptyContentView添加到哪个view上，就用哪个view).zx_emptyContentView方式获取ZXEmptyContentView对象，从而获取内部控件，并随时修改
+### `ZXEmptyContentView`数据设置
+#### `设置ZXEmptyContentView`的子控件数据
+* `ZXEmptyContentView`的子控件包括`zx_topImageView`、`zx_titleLabel`、`zx_detailLabel`、`zx_actionBtn`
+* 您可以在自定义EmptyView继承于`ZXEmptyContentView`并重写`zx_customSetting`方法的时候进行初始化设置
+* 您也可以在控制器或其他地方通过view(`ZXEmptyContentView`添加到哪个view上，就用哪个view).zx_emptyContentView方式获取`ZXEmptyContentView`对象，从而获取内部控件，并随时修改
 #### 下方是一个小Demo，实现了刚开始显示默认数据，3秒后更换数据的效果
-* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+* 创建`DemoEmptyView`，继承于`ZXEmptyContentView`，重写`zx_customSetting`方法，设置自定义的样式
 ```objective-c
 @implementation DemoEmptyView
 //重写zx_customSetting方法
@@ -351,7 +386,7 @@ emptyContentView.zx_defaultSubviewsSpace = 20;
 }
 @end
 ```
-* 在控制器中设置当前控制器view的emptyView为DemoEmptyView，并在3秒后修改emptyView子控件
+* 在控制器中设置当前控制器view的emptyView为`DemoEmptyView`，并在3秒后修改emptyView子控件
 ```objective-c
 [self.view zx_setEmptyView:@"DemoEmptyView" isFull:NO clickedBlock:^(UIButton * _Nullable btn) {
     NSLog(@"点击了按钮");
@@ -371,9 +406,9 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), di
 <img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo1.gif"/>
 
 ***
-### ZXEmptyContentView 点击回调
-#### ZXEmptyContentView自身点击回调
-* 在控制器中设置当前控制器view的emptyView为DemoEmptyView时，同时设置点击回调
+### `ZXEmptyContentView` 点击回调
+#### `ZXEmptyContentView`自身点击回调
+* 在控制器中设置当前控制器view的emptyView为`DemoEmptyView`时，同时设置点击回调
 ```objective-c
 [self.view zx_setEmptyView:@"DemoEmptyView" isFull:NO clickedBlock:^(UIButton * _Nullable btn) {
     NSLog(@"点击了按钮");
@@ -381,18 +416,18 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), di
     NSLog(@"点击了emptyView");
 }];
 ```
-* 通过ZXEmptyContentView对象设置自身点击回调(Block)
+* 通过`ZXEmptyContentView`对象设置自身点击回调(Block)
 ```objective-c
 self.view.zx_emptyContentView.zx_emptyViewClickedBlock = ^(UIView * _Nonnull sender) {
     NSLog(@"点击了emptyView");
 };
 ```
-* 通过ZXEmptyContentView对象设置自身点击回调(addTarget)
+* 通过`ZXEmptyContentView`对象设置自身点击回调(addTarget)
 ```objective-c
 [self.view.zx_emptyContentView zx_emptyViewAddTarget:self action:@selector(emptyViewClickedAction)];
 ```
-#### ZXEmptyContentView中的actionBtn点击回调(Block)
-* 在控制器中设置当前控制器view的emptyView为DemoEmptyView时，同时设置点击回调
+#### `ZXEmptyContentView`中的actionBtn点击回调(Block)
+* 在控制器中设置当前控制器view的emptyView为`DemoEmptyView`时，同时设置点击回调
 ```objective-c
 [self.view zx_setEmptyView:@"DemoEmptyView" isFull:NO clickedBlock:^(UIButton * _Nullable btn) {
     NSLog(@"点击了按钮");
@@ -400,13 +435,13 @@ self.view.zx_emptyContentView.zx_emptyViewClickedBlock = ^(UIView * _Nonnull sen
     NSLog(@"点击了emptyView");
 }];
 ```
-* 通过ZXEmptyContentView对象设置actionBtn点击回调(Block)
+* 通过`ZXEmptyContentView`对象设置actionBtn点击回调(Block)
 ```objective-c
 self.view.zx_emptyContentView.zx_btnClickedBlock = ^(UIView * _Nonnull sender) {
     NSLog(@"点击了按钮");
 };
 ```
-* 通过ZXEmptyContentView对象设置actionBtn点击回调(addTarget)
+* 通过`ZXEmptyContentView`对象设置actionBtn点击回调(addTarget)
 ```objective-c
 [self.view.zx_emptyContentView zx_btnAddTarget:self action:@selector(emptyViewClickedAction)];
 ```
@@ -420,33 +455,33 @@ self.view.zx_emptyContentView.zx_btnClickedBlock = ^(UIView * _Nonnull sender) {
 ```objective-c
 [self.view.zx_emptyContentView.zx_actionBtn zx_addTarget:self action:@selector(btnClickedAction)];
 ```
-#### 点击自动隐藏ZXEmptyContentView
-* 当点击了ZXEmptyContentView中的actionBtn时ZXEmptyContentView会自动隐藏，若实现了点击ZXEmptyContentView方法的监听，则点击ZXEmptyContentView时，ZXEmptyContentView也会自动隐藏
+#### 点击自动隐藏`ZXEmptyContentView`
+* 当点击了`ZXEmptyContentView`中的actionBtn时`ZXEmptyContentView`会自动隐藏，若实现了点击`ZXEmptyContentView`方法的监听，则点击`ZXEmptyContentView`时，`ZXEmptyContentView`也会自动隐藏
 * 可以通过以下设置关闭此功能
 ```objective-c
 self.tableView.zx_emptyContentView.zx_autoHideWhenTapOrClick = NO;
 ```
 ***
 
-### ZXEmptyContentView UITableView&UICollectionView相关
-#### ZXEmptyContentView 自动显示与隐藏
-* 若将ZXEmptyContentView添加至tableView或collectionView中(如：[self.tableView zx_setEmptyView...])，则ZXEmptyContentView会自动显示与隐藏
-* 当tableView或collectionView有数据的时候，ZXEmptyContentView会自动隐藏，无数据时自动显示
+### `ZXEmptyContentView` UITableView&UICollectionView相关
+#### `ZXEmptyContentView` 自动显示与隐藏
+* 若将`ZXEmptyContentView`添加至tableView或collectionView中(如：`[self.tableView zx_setEmptyView...]`)，则`ZXEmptyContentView`会自动显示与隐藏
+* 当tableView或collectionView有数据的时候，`ZXEmptyContentView`会自动隐藏，无数据时自动显示
 * 可以通过以下设置关闭此功能
 ```objective-c
 self.tableView.zx_emptyContentView.zx_autoShowEmptyView = NO;
 ```
-#### ZXEmptyContentView 根据headerView和footerView的高度自动调整布局
-* 当tableView或collectionView无数据并且有headerView或footerView时，ZXEmptyContentView会自动计算并调整y轴的偏移量，使得ZXEmptyContentView始终在二者之间
+#### `ZXEmptyContentView` 根据headerView和footerView的高度自动调整布局
+* 当tableView或collectionView无数据并且有headerView或footerView时，`ZXEmptyContentView`会自动计算并调整y轴的偏移量，使得`ZXEmptyContentView`始终在二者之间
 * 可以通过以下设置关闭此功能
 ```objective-c
 self.tableView.zx_emptyContentView.zx_autoAdjustWhenHeaderView = NO;
 self.tableView.zx_emptyContentView.zx_autoAdjustWhenFooterView = NO;
 ```
-### ZXEmptyContentView 切换样式
+### `ZXEmptyContentView` 切换样式
 #### 在实际开发中经常需要使用到样式切换，例如若tableView无数据，则显示无数据的emptyView，若网络请求失败，则显示网络错误的emptyView
 #### 以下是一个样式切换的demo
-* 创建DemoEmptyView，继承于ZXEmptyContentView，重写zx_customSetting，设置自定义的样式
+* 创建`DemoEmptyView`，继承于`ZXEmptyContentView`，重写`zx_customSetting`方法，设置自定义的样式
 ```objective-c
 @implementation DemoEmptyView
 //重写父类zx_customSetting方法
@@ -516,13 +551,13 @@ self.tableView.zx_emptyContentView.zx_type = 1;
 //emptyView样式为[暂无数据]
 self.tableView.zx_emptyContentView.zx_type = 0;
 ```
-* 无需关心何时显示或隐藏ZXEmptyView，ZXEmptyView会自动处理
-#### 具体代码可查看Demo中的DemoTableViewVC
+* 无需关心何时显示或隐藏`ZXEmptyView`，`ZXEmptyView`会自动处理
+#### 具体代码可查看Demo中的`DemoTableViewVC`
 
 #### 效果预览
 <img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo2.gif"/>
 
-### ZXEmptyContentView UITableView & UICollectionView功能辅助
+### `ZXEmptyContentView` UITableView & UICollectionView功能辅助
 #### UITableView or UICollectionView开始加载的时候手动调用，将会隐藏emptyView
 ```objective-c
 [self.tableView zx_startLoading];
@@ -533,27 +568,27 @@ self.tableView.zx_emptyContentView.zx_type = 0;
 ```
 ***
 
-### ZXEmptyContentView的其他设置
-#### 手动显示ZXEmptyContentView
-* 调用ZXEmptyContentView对象的zx_show方法
+### `ZXEmptyContentView`的其他设置
+#### 手动显示`ZXEmptyContentView`
+* 调用`ZXEmptyContentView`对象的`zx_show`方法
 ```objective-c
 [emptyContentView zx_show];
 ```
-* 调用ZXEmptyContentView所添加到的superView的zx_showEmptyView方法
+* 调用`ZXEmptyContentView`所添加到的superView的`zx_showEmptyView`方法
 ```objective-c
 [self.tableView zx_showEmptyView];
 ```
-#### 手动隐藏ZXEmptyContentView
-* 调用ZXEmptyContentView对象的zx_hide方法
+#### 手动隐藏`ZXEmptyContentView`
+* 调用`ZXEmptyContentView`对象的`zx_hide`方法
 ```objective-c
 [emptyContentView zx_hide];
 ```
-* 调用ZXEmptyContentView所添加到的superView的zx_showEmptyView方法
+* 调用`ZXEmptyContentView`所添加到的superView的`zx_showEmptyView`方法
 ```objective-c
 [self.tableView zx_hideEmptyView];
 ```
 
-#### 设置ZXEmptyContentView覆盖满整个superView
+#### 设置`ZXEmptyContentView`覆盖满整个superView
 ```objective-c
 //isFull为YES，则覆盖满整个superView
 [self.view zx_setEmptyView:@"DemoEmptyView" isFull:YES clickedBlock:^(UIButton * _Nullable btn) {
@@ -562,7 +597,7 @@ self.tableView.zx_emptyContentView.zx_type = 0;
     NSLog(@"点击了emptyView");
 }];
 ```
-#### 获取ZXEmptyContentView的zx_fullEmptyView(覆盖满整个superView的view)
+#### 获取`ZXEmptyContentView`的`zx_fullEmptyView`(覆盖满整个superView的view)
 * 通过ZXEmptyContentView对象的获取
 ```objective-c
 ZXFullEmptyView *fullEmptyViewem = emptyContentView.zx_fullEmptyView;
@@ -571,12 +606,12 @@ ZXFullEmptyView *fullEmptyViewem = emptyContentView.zx_fullEmptyView;
 ```objective-c
 ZXFullEmptyView *fullEmptyViewem = self.view.zx_fullEmptyView;
 ```
-#### 事实上，当ZXEmptyContentView为覆盖满整个目标view的时候，ZXEmptyContentView的superView为目标view；
-#### 当ZXEmptyContentView需要覆盖满目标视图的时候，ZXEmptyContentView的superView是ZXFullEmptyView，ZXFullEmptyView的superView是目标view
+#### 事实上，当`ZXEmptyContentView`为覆盖满整个目标view的时候，`ZXEmptyContentView`的superView为目标view；
+#### 当`ZXEmptyContentView`需要覆盖满目标视图的时候，`ZXEmptyContentView`的superView是`ZXFullEmptyView`，`ZXFullEmptyView`的superView是目标view
 
 ***
-### 完全自定义ZXEmptyView
-#### 若ZXEmptyContentView中的子控件数量或种类无法满足需求，可以完全自定义，且仍然可以使用自动居中布局与自动显示
+### 完全自定义`ZXEmptyView`
+#### 若`ZXEmptyContentView`中的子控件数量或种类无法满足需求，可以完全自定义，且仍然可以使用自动居中布局与自动显示
 * 在控制器中
 ```objective-c
 DemoCustomEmptyView *customEmptyView = [[[NSBundle mainBundle]loadNibNamed:@"DemoCustomEmptyView" owner:nil options:nil]lastObject];
@@ -585,7 +620,7 @@ customEmptyView.zx_size = CGSizeMake(300, 200);
 [self.view zx_setCustomEmptyView:customEmptyView];
 [self.view zx_showEmptyView];
 ```
-#### 具体代码可查看Demo中的DemoCustomViewVC
+#### 具体代码可查看Demo中的`DemoCustomViewVC`
 #### 效果预览
 <img src="http://www.zxlee.cn/ZXEmptyViewDemoImg/demo2.jpg"/>
 
