@@ -76,12 +76,12 @@ pod 'ZXEmptyView'
 //在base控制器中，判断是否有tableView，如果有就直接给它初始化空数据图，无需每个控制器都写一遍
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UITableView *tableView = [self valueForKey:@"tableView"];
-    if(tableView){
+    if([self respondsToSelector:@selector(tableView)]){
+        UITableView *tableView = [self valueForKey:@"tableView"];
         [tableView zx_setEmptyView:@"DemoEmptyView"];
     }
-    UITableView *collectionView = [self valueForKey:@"collectionView"];
-    if(collectionView){
+    if([self respondsToSelector:@selector(collectionView)]){
+        UICollectionView *collectionView = [self valueForKey:@"collectionView"];
         [collectionView zx_setEmptyView:@"DemoEmptyView"];
     }
 }
