@@ -86,7 +86,7 @@ pod 'ZXEmptyView'
     }
 }
 ```
-一劳永逸！
+一劳永逸！以上代码使控制器中所有的属性名为`tableView`或`collectionView`的UITableView和UICollectionView有数据时自动隐藏空数据图，无数据时自动显示空数据图。
 
 
 ### 基础样式示例
