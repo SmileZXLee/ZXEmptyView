@@ -7,7 +7,6 @@
 //
 
 #import "DemoBaseVC.h"
-#import "ZXEmptyView.h"
 @interface DemoBaseVC ()
 @property (strong, nonatomic) ZXEmptyContentView *emptyView;
 @end
@@ -16,10 +15,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)setEmptyViewForView:(UIView *)view clickedSelector:(SEL)sel{
+    //初始化emptyView
     [view zx_setEmptyView:@"DemoEmptyView" isFull:NO clickedTarget:self selector:sel];
     self.emptyView = view.zx_emptyContentView;
 }

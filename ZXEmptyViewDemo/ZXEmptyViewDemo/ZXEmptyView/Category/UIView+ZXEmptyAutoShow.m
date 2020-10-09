@@ -32,6 +32,11 @@
             __weak typeof(self) weakSelf = self;
             [self.zx_emptyContentView zx_updateFrame:^CGRect(CGRect orgFrame) {
                 orgFrame = CGRectMake(orgFrame.origin.x, (weakSelf.zx_height - headerHeight - footerHeight -  orgFrame.size.height) / 2 + headerHeight, orgFrame.size.width, orgFrame.size.height);
+                UIScrollView *scrollView = (UIScrollView *)weakSelf;
+                CGFloat maxScrollViewContentH = MAX(scrollView.contentSize.height, scrollView.zx_height);
+                if(CGRectGetMaxY(orgFrame) > maxScrollViewContentH - footerHeight){
+                    [weakSelf zx_hideEmptyView];
+                }
                 return orgFrame;
             }];
         }else{
@@ -155,7 +160,9 @@
 }
 
 - (void)zx_startLoading{
-    [self zx_hideEmptyView];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CGFLOAT_MIN * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self zx_hideEmptyView];
+    });
 }
 
 - (void)zx_endLoading{

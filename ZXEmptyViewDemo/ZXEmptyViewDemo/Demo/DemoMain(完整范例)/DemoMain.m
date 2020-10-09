@@ -30,6 +30,7 @@ typedef void (^requestDataBlock)(BOOL result,id data);
     [self initTableView];
     //初始化EmptyView样式，详见父类:DemoBaseVC
     [self setEmptyViewForView:self.tableView clickedSelector:@selector(requestTableViewData)];
+    [self requestTableViewData];
 }
 
 #pragma mark 设置tableView
@@ -97,9 +98,10 @@ typedef void (^requestDataBlock)(BOOL result,id data);
 
 #pragma mark 假装进行了网络请求，返回假数据
 - (void)requestDataCallBack:(requestDataBlock)requestDataBlock error:(BOOL)error hasData:(BOOL)hasData{
-    //[self.tableView zx_startLoading];
+    [self.tableView zx_startLoading];
     [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //-zx_endLoading非必须
         //[self.tableView zx_endLoading];
         [MBProgressHUD hideHUDForView:self.tableView animated:YES];
         if(error){
