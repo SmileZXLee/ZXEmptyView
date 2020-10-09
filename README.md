@@ -71,9 +71,9 @@ pod 'ZXEmptyView'
 ```
 即可
 
-* 当然，我们可以更方便地管理统一来管理空数据图
+### 【建议】使用以下几行代码一次性设置整个项目的emptyView且自动管理，无需进行手动控制显示或隐藏等额外操作。
 ```objective-c
-//在base控制器中，判断是否有tableView，如果有就直接给它初始化空数据图，无需每个控制器都写一遍
+//在base控制器中，判断是否有tableView或collectionView，如果有就直接给它初始化空数据图，无需每个控制器都写一遍
 - (void)viewDidLoad {
     [super viewDidLoad];
     if([self respondsToSelector:@selector(tableView)]){
@@ -562,7 +562,7 @@ self.tableView.zx_emptyContentView.zx_type = 0;
 ```objective-c
 [self.tableView zx_startLoading];
 ```
-#### UITableView or UICollectionView结束加载的时候手动调用，将会根据tableView中cell的个数决定是否显示emptyView
+#### 【非必须】UITableView or UICollectionView结束加载的时候手动调用，请求结束不调用亦可，ZXEmpty将监听UITableView or UICollectionView刷新并自动判定显示或隐藏emptyView
 ```objective-c
 [self.tableView zx_endLoading];
 ```
