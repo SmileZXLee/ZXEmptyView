@@ -76,10 +76,14 @@
 - (CGFloat)getHeaderHeight{
     if([self isKindOfClass:[UITableView class]]){
         UITableView *tableView = (UITableView *)self;
+        CGFloat tableHeaderViewHeight = 0;
+        if(tableView.tableHeaderView){
+            tableHeaderViewHeight = tableView.tableHeaderView.zx_height;
+        }
         id delegate = tableView.delegate;
         if(delegate && [delegate respondsToSelector:@selector(tableView:heightForHeaderInSection:)]){
             CGFloat headerHeight = [delegate tableView:tableView heightForHeaderInSection:0];
-            return headerHeight;
+            return headerHeight + tableHeaderViewHeight;
         }
     }
     if([self isKindOfClass:[UICollectionView class]]){
@@ -97,10 +101,17 @@
 - (CGFloat)getFooterHeight{
     if([self isKindOfClass:[UITableView class]]){
         UITableView *tableView = (UITableView *)self;
+        if(tableView.tableFooterView){
+            return tableView.tableFooterView.zx_height;
+        }
+        CGFloat tableFooterViewHeight = 0;
+        if(tableView.tableFooterView){
+            tableFooterViewHeight = tableView.tableFooterView.zx_height;
+        }
         id delegate = tableView.delegate;
         if(delegate && [delegate respondsToSelector:@selector(tableView:heightForFooterInSection:)]){
             CGFloat footerHeight = [delegate tableView:tableView heightForFooterInSection:0];
-            return footerHeight;
+            return footerHeight + tableFooterViewHeight;
         }
     }
     if([self isKindOfClass:[UICollectionView class]]){
