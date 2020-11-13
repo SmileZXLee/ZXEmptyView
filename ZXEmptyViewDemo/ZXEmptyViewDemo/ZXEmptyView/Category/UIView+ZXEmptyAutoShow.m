@@ -14,7 +14,7 @@
 
 #pragma mark - Private
 #pragma mark 刷新emptyView显示或隐藏的状态
-- (void)resetEmptyViewStatus{
+- (void)zx_resetEmptyViewStatus{
     if([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]]){
         ZXEmptyContentView *emptyContentView = self.zx_emptyContentView;
         if(!emptyContentView)return;
@@ -152,22 +152,22 @@
 
 - (void)zx_tableViewReloadData{
     [self zx_tableViewReloadData];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_reloadSections:(id)arg1 withRowAnimation:(int)agr2{
     [self zx_reloadSections:arg1 withRowAnimation:agr2];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_insertSections:(id)arg1 withRowAnimation:(int)agr2{
     [self zx_insertSections:arg1 withRowAnimation:agr2];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_deleteSections:(id)arg1 withRowAnimation:(int)agr2{
     [self zx_deleteSections:arg1 withRowAnimation:agr2];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_startLoading{
@@ -177,7 +177,7 @@
 }
 
 - (void)zx_endLoading{
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 @end
 
@@ -194,37 +194,37 @@
 
 - (void)zx_collectionViewReloadData{
     [self zx_collectionViewReloadData];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_reloadSections:(id)arg1{
     [self zx_reloadSections:arg1];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_insertSections:(id)arg1{
     [self zx_insertSections:arg1];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_deleteSections:(id)arg1{
     [self zx_deleteSections:arg1];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_reloadItemsAtIndexPaths:(id)arg1{
     [self zx_reloadItemsAtIndexPaths:arg1];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_insertItemsAtIndexPaths:(id)arg1{
     [self zx_insertItemsAtIndexPaths:arg1];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_deleteItemsAtIndexPaths:(id)arg1{
     [self zx_deleteItemsAtIndexPaths:arg1];
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 
 - (void)zx_startLoading{
@@ -232,6 +232,6 @@
 }
 
 - (void)zx_endLoading{
-    [self resetEmptyViewStatus];
+    [self zx_resetEmptyViewStatus];
 }
 @end

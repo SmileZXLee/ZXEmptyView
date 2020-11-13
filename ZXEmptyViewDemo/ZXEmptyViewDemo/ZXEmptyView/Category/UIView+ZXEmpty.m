@@ -49,6 +49,10 @@ static NSString *fullEmptyViewKey = @"zx_fullEmptyViewKey";
     }else{
         [self setEmptyView:contentView];
     }
+    if([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]]){
+        SEL sel = NSSelectorFromString(@"zx_resetEmptyViewStatus");
+        ((void (*)(id, SEL))[self methodForSelector:sel])(self, sel);
+    }
 }
 
 - (void)zx_setEmptyView:(id)emptyViewObj isFull:(BOOL)isFull clickedBlock:(zx_clickedBlock)clickedBlock{

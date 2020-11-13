@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = 'ZXEmptyView'
-s.version      = '1.0.9'
+s.version      = '1.1.0'
 s.summary      = '轻松构建无数据、网络错误等占位图，简单易用'
 s.homepage     = 'https://github.com/SmileZXLee/ZXEmptyView'
 s.license      = 'MIT'
